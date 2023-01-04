@@ -1,0 +1,9 @@
+
+export const LOGIN = 'LOGIN';
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+export const LOGIN_FAILURE = 'LOGIN_FAILURE';
+
+export const HANDLE_LOGIN_CHANGE = 'HANDLE_LOGIN_CHANGE';
+export const LOGOUT = 'LOGOUT';
+
+export const SET_LOGIN_DEFAULTS = 'SET_LOGIN_DEFAULTS';

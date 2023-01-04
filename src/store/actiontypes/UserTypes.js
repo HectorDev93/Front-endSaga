@@ -1,0 +1,7 @@
+
+export const USER_BY_TYPE = 'USER_BY_TYPE';
+export const USER_MENU = 'USER_MENU';
+export const LOAD_SPINNER = 'LOAD_SPINNER';
+export const USER_ROLE = 'USER_ROLE';
+export const USER_PERMISSION_ACTION = 'USER_PERMISSION_ACTION';
+export const SET_USER_DEFAULTS = 'SET_USER_DEFAULTS';

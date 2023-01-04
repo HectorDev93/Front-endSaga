@@ -1,0 +1,2 @@
+
+export const LIST_ALL_CONDITIONS = 'LIST_ALL_CONDITIONS';

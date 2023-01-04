@@ -1,0 +1,2 @@
+
+export const LIST_ALL_PRIORITIES = 'LIST_ALL_PRIORITIES';
