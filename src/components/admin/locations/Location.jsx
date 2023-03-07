@@ -112,7 +112,7 @@ class Location extends React.Component {
                   <i className="fas fa-eye"></i>
                 </button> */}{" "}
                 <button
-                  className="btn btn-danger"
+                  className="btn btn-danger btn-sm"
                   onClick={() => this.handleDelete(row)}
                 >
                   <i className="fas fa-trash-alt"></i>
@@ -345,7 +345,7 @@ class Location extends React.Component {
                               <button
                                 id="addLocation"
                                 type="button"
-                                className="btn btn-primary"
+                                className="btn btn-primary custom-info"
                                 onClick={this.openAddLocationModal.bind(this)}
                               >
                                 <i className="fa fa-plus"></i>

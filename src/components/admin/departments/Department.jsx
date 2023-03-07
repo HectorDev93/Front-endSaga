@@ -152,13 +152,13 @@ class Department extends React.Component {
                 <button
                   id="viewDepartment"
                   type="button"
-                  className="btn btn-primary"
+                  className="btn btn-warning btn-sm"
                   onClick={() => this.handleView(row, "Actualizar departamento")}
                 >
                   <i className="fas fa-edit"></i>
                 </button>{" "}
                 <button
-                  className="btn btn-danger"
+                  className="btn btn-danger btn-sm"
                   onClick={() => this.handleDelete(row)}
                 >
                   <i className="fas fa-trash-alt"></i>
@@ -344,7 +344,7 @@ class Department extends React.Component {
                               <button
                                 id="addLocation"
                                 type="button"
-                                className="btn btn-primary"
+                                className="btn btn-primary custom-info"
                                 onClick={() =>
                                   this.handleCreate("Agregar nuevo departamento")
                                 }

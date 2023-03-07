@@ -88,7 +88,7 @@ class Reques extends React.Component {
         },
         {
           dataField: "numCase",
-          text: "Num case",
+          text: "Caso TI",
           sort: true,
           filter: textFilter(),
           headerSortingStyle,
@@ -225,13 +225,14 @@ class Reques extends React.Component {
                 <button
                   id="viewCollaborator"
                   type="button"
-                  className="btn btn-primary"
+                  className="btn btn-warning btn-sm"
                   onClick={() => this.handleView(row, "Editar actividad")}
                 >
                   <i className="fas fa-edit"></i>
-                </button>{" "}
+                </button>
+                {""}
                 <button
-                  className="btn btn-danger"
+                  className="btn btn-danger btn-sm"
                   onClick={() => this.handleDelete(row)}
                 >
                   <i className="fas fa-trash-alt"></i>
@@ -254,12 +255,12 @@ class Reques extends React.Component {
   }
 
   componentDidMount() {
-   // alert(window.location.pathname)
-   //var frg = window.location.pathname.split("/");
+    // alert(window.location.pathname)
+    //var frg = window.location.pathname.split("/");
 
-//var result = frg[2];
+    //var result = frg[2];
 
-//console.log(result)
+    //console.log(result)
 
     this.props.setRequesDefaults();
     this.props.listRequess(localStorage.getItem("user.id"));
@@ -365,7 +366,7 @@ class Reques extends React.Component {
         order: "desc",
       },
     ];
-   /*  const MyExportCSV = (e) => {
+    /*  const MyExportCSV = (e) => {
       const handleClick = () => {
         // props.onExport();
         e.onExport();
@@ -397,7 +398,7 @@ class Reques extends React.Component {
         if (isSelect) {
           // console.log(row);
           activities = row;
-           console.log(activitiesArray);
+          console.log(activitiesArray);
           activitiesArray.push({ ...activities });
           // console.log("agregue el dato: "+ row.id);
         } else {
@@ -467,7 +468,7 @@ activities = (rows[i].description);
         Agregar nueva actividad
       </Tooltip>
     );
-  /*   const renderExportCsvTooltip = (props) => (
+    /*   const renderExportCsvTooltip = (props) => (
       <Tooltip id="button-tooltip" {...props}>
         Export to CSV
       </Tooltip>
@@ -514,7 +515,7 @@ activities = (rows[i].description);
                               <button
                                 id="addCollaborator"
                                 type="button"
-                                className="btn btn-primary"
+                                className="btn btn-primary custom-info"
                                 onClick={() =>
                                   this.handleCreate("Agregar nueva actividad")
                                 }
@@ -556,30 +557,61 @@ activities = (rows[i].description);
                                 name="Activities"
                               >
                                 <ExcelColumn label="ID" value="id" />
-                                <ExcelColumn label="Num. caso TI" value="numCase" />
+                                <ExcelColumn
+                                  label="Num. caso TI"
+                                  value="numCase"
+                                />
                                 <ExcelColumn label="Sociedad" value="society" />
-                                <ExcelColumn label="Departamento" value="department" />
-                                <ExcelColumn label="Localidad" value="location" />
-                                <ExcelColumn label="Categoria" value="category" />
-                                <ExcelColumn label="Sub-Categoria" value="categoryType" />
-                                <ExcelColumn label="Creado" value="created_at" />
-                                <ExcelColumn label="Colaborador nombre" value="c1Name" />
-                                <ExcelColumn label="Colaborador apellido" value="c1Lname" />
-                                <ExcelColumn label="Description" value="description" />
+                                <ExcelColumn
+                                  label="Departamento"
+                                  value="department"
+                                />
+                                <ExcelColumn
+                                  label="Localidad"
+                                  value="location"
+                                />
+                                <ExcelColumn
+                                  label="Categoria"
+                                  value="category"
+                                />
+                                <ExcelColumn
+                                  label="Sub-Categoria"
+                                  value="categoryType"
+                                />
+                                <ExcelColumn
+                                  label="Creado"
+                                  value="created_at"
+                                />
+                                <ExcelColumn
+                                  label="Colaborador nombre"
+                                  value="c1Name"
+                                />
+                                <ExcelColumn
+                                  label="Colaborador apellido"
+                                  value="c1Lname"
+                                />
+                                <ExcelColumn
+                                  label="Description"
+                                  value="description"
+                                />
                               </ExcelSheet>
                             </ExcelFile>
+                            <br />
                             {/* <MyExportCSV {...props.csvProps} />{" "} */}
-                             <ToggleList
+                            <ToggleList
                               contextual="success"
                               className="list-custom-class"
                               btnClassName="list-btn-custom-class"
                               {...props.columnToggleProps}
-                            /> 
+                            />
+                            <br />
                             <BootstrapTable
                               {...props.baseProps}
                               selectRow={selectRow}
+                              bordered={false}
                               defaultSorted={defaultSorted}
                               filter={filterFactory()}
+                              filterPosition="top"
                               pagination={paginationFactory()}
                               cellEdit={cellEditFactory({
                                 mode: "dbclick",

@@ -149,13 +149,14 @@ class Collaborator extends React.Component {
                 <button
                   id="viewCollaborator"
                   type="button"
-                  className="btn btn-primary"
+                  className="btn btn-warning  btn-sm"
                   onClick={() => this.handleView(row, "Actualizar colaborador")}
                 >
                   <i className="fas fa-edit"></i>
-                </button>{" "}
+                </button>
+        
                 <button
-                  className="btn btn-danger"
+                  className="btn btn-danger btn-sm"
                   onClick={() => this.handleDelete(row)}
                 >
                   <i className="fas fa-trash-alt"></i>
@@ -340,7 +341,7 @@ class Collaborator extends React.Component {
                               <button
                                 id="addCollaborator"
                                 type="button"
-                                className="btn btn-primary"
+                                className="btn btn-primary custom-info"
                                 onClick={() =>
                                   this.handleCreate("Agregar nuevo(a) colaborador(ra)")
                                 }

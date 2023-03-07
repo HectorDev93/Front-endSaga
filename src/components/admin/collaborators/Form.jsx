@@ -103,6 +103,7 @@ class Form extends React.Component {
             <label for="department" className="form-label">Departamento</label>
             </div>
               <button
+              id="btn-generic2"
               disabled={this.props.enabled ? true : null}
                 type="button"
                 className="btn btn-primary"
@@ -143,6 +144,7 @@ class Form extends React.Component {
           </label>
           </div>
             <button
+            id="btn-generic2"
                 type="button"
                 className="btn btn-primary"
                 onClick={this.props.openAddSocietyModal.bind(this)}
@@ -174,6 +176,7 @@ class Form extends React.Component {
             <label for="location">Localidad</label>
               </div>
               <button
+              id="btn-generic2"
                 type="button"
                 className="btn btn-primary"
                 onClick={this.props.openAddLocationModal.bind(this)}

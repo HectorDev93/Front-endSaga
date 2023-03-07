@@ -208,7 +208,7 @@ let rsp = this.props.all_collaborators.find(item => item.id === this.props.reque
             />
           </ModalBody>
           <ModalFooter>
-            <Button type="submit" color="primary">
+            <Button id="btn-generic"type="submit" color="primary">
               {this.props.btnAction ? this.props.btnAction : "Guardar"}
             </Button>
             <Button color="secondary" onClick={this.props.toggle}>

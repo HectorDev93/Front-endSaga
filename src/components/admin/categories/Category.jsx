@@ -116,7 +116,7 @@ class Category extends React.Component {
                       </button> */}{" "}
                 <button
                   id="deleteCat"
-                  className="botonEliminar btn btn-danger"
+                  className="botonEliminar btn btn-danger btn-sm"
                   onClick={() => this.handleDelete(row)}
                 >
                   <i className="fas fa-trash-alt"></i>
@@ -361,7 +361,7 @@ loadPermission(){
                               <button
                                 id="addLocation"
                                 type="button"
-                                className="btn btn-primary"
+                                className="btn btn-primary custom-info"
                                 onClick={this.openAddModal.bind(this)}
                               >
                                 <i className="fa fa-plus"></i>

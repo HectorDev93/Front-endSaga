@@ -108,6 +108,7 @@ class Form extends React.Component {
           </div>
           <div className="col-sm-2">
             <button
+            id="btn-generic2"
               type="button"
               className="btn btn-primary"
               title="Agregar nueva categoria"

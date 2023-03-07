@@ -66,7 +66,7 @@ class AddModal2 extends React.Component
                                                   validation_errors={this.props.location.validation_errors} />
          </ModalBody>
         <ModalFooter>
-          <Button type="submit" color="primary">Guardar</Button>
+          <Button id='btn-generic' type="submit" color="primary">Guardar</Button>
           <Button color="secondary" onClick={this.props.toggle}>Cancelar</Button>
         </ModalFooter>
         </form>

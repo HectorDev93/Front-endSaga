@@ -86,6 +86,7 @@ componentDidUpdate(){
               <label htmlFor="location">Localidad</label>
             </div>
             <button
+            id="btn-generic2"
               type="button"
               className="btn btn-primary"
               onClick={this.props.openAddLocationModal.bind(this)}
@@ -139,7 +140,7 @@ componentDidUpdate(){
               {/* <label htmlFor="collaboratorAttended2">Colaborador</label> */}
              
             </div>
-            <button
+            <button id="btn-generic2"
               type="button"
               className="btn btn-primary"
               onClick={this.props.openAddCollaboratorModal.bind(this)}
@@ -197,6 +198,7 @@ componentDidUpdate(){
               <label htmlFor="category">Categoria</label>
             </div>
             <button
+            id="btn-generic2"
               type="button"
               className="btn btn-primary"
               onClick={this.props.openAddCategoryModal.bind(this)}
@@ -254,7 +256,7 @@ componentDidUpdate(){
               </select>
               <label htmlFor="categoryType">Subcategoria</label>
             </div>
-            <button
+            <button id="btn-generic2"
               disabled={this.props.enabled ? true : null}
               type="button"
               className="btn btn-primary"

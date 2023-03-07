@@ -59,6 +59,7 @@ class Form extends React.Component {
  <label for="society">Sociedad</label>
           </div>
               <button
+              id="btn-generic2"
                 type="button"
                 className="btn btn-primary"
                 onClick={this.props.openAddSocietyModal.bind(this)}
