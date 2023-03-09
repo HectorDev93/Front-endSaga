@@ -78,8 +78,8 @@ const requesReducer = function (state = initialState, action) {
       return {
         ...state,
         create_update_spinner: false,
-        error_message: action.error.message,
-        validation_errors: action.error.errors,
+       /*  error_message: action.error.message,
+        validation_errors: action.error.errors, */
       };
     case RequesTypes.SHOW_REQUES:
       return {

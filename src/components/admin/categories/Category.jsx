@@ -140,7 +140,7 @@ class Category extends React.Component {
     /*console.log(localStorage.getItem("user.id")+permissionC);
     console.log(permissionU);
     console.log(permissionD); */
-    this.loadPermission();
+    //this.loadPermission();
     /* fin manejar permisos */
     this.props.setCategoryDefaults();
     this.props.listCategories();
@@ -184,6 +184,7 @@ loadPermission(){
     this.setState({
       show_add_category_modal: false,
     });
+    this.props.setCategoryDefaults()
   }
   handleDelete(row) {
       Swal.fire({

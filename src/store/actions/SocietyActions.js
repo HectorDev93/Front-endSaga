@@ -89,11 +89,20 @@ function addSociety(name, cb) {
         cb();
       })
       .catch((error) => {
+        if(error.response.status === 303){
+          dispatch({
+          type: SocietyTypes.CREATE_SOCIETIES_FAILURE,
+          error: error.response.data,
+        });
+          //toast.error("Esta categoria existe" + JSON.stringify(error.response.status));
+          toast.error("Esta sociedad existe");
+        }else{
         dispatch({
           type: SocietyTypes.CREATE_SOCIETIES_FAILURE,
           error: error.response.data,
         });
         toast.error("Hubo un error al crear sociedad");
+      }
       });
   };
 }
@@ -171,12 +180,21 @@ function editSociety(name, id, cb) {
         }, 10);
       })
       .catch((error) => {
+        if(error.response.status === 303){
+          dispatch({
+          type: SocietyTypes.EDIT_SOCIETIES_FAILURE,
+          error: error.response.data,
+        });
+          //toast.error("Esta categoria existe" + JSON.stringify(error.response.status));
+          toast.error("Esta sociedad existe");
+        }else{
         dispatch({
           type: SocietyTypes.EDIT_SOCIETIES_FAILURE,
           error: error.response.data,
         });
 
         toast.error("Hubo un error actualizando la sociedad");
+      }
       });
   };
 }

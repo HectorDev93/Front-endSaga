@@ -38,10 +38,10 @@ class AddModal extends React.Component {
 
       componentDidMount() {
         this.props.setCollaboratorDefaults();
-        this.props.resetFields();
+        this.props.resetFields();/* 
         this.props.listAllSocieties();
         this.props.listAllDepartments();
-        this.props.listAllLocations();
+        this.props.listAllLocations(); */
       }
 
       openAddSocietyModal() {
@@ -195,9 +195,9 @@ class AddModal extends React.Component {
 const mapStateToProps = (state, ownProps) => {
     return {
       collaborator: state.collaborator,
-      all_societies: state.society.all_societies,
+      /* all_societies: state.society.all_societies,
       all_departments: state.department.all_departments,
-      all_locations: state.location.all_locations
+      all_locations: state.location.all_locations */
     };
   };
   

@@ -88,11 +88,20 @@ function addCategory(name, cb) {
         cb();
       })
       .catch((error) => {
+        if(error.response.status === 303){
+          dispatch({
+          type: CategoryTypes.CREATE_CATEGORIES_FAILURE,
+          error: error.response.data,
+        });
+          //toast.error("Esta categoria existe" + JSON.stringify(error.response.status));
+          toast.error("Esta categoria existe");
+        }else{
         dispatch({
           type: CategoryTypes.CREATE_CATEGORIES_FAILURE,
           error: error.response.data,
         });
         toast.error("Oops hubo error al crear categoria");
+      }
       });
   };
 }
@@ -147,12 +156,20 @@ function editCategory(name, id, cb) {
       cb();
         })
       .catch((error) => {
+        if(error.response.status === 303){
+          dispatch({
+          type: CategoryTypes.EDIT_CATEGORIES_FAILURE,
+          error: error.response.data,
+        });
+          //toast.error("Esta categoria existe" + JSON.stringify(error.response.status));
+          toast.error("Esta categoria existe");
+        }else{
         dispatch({
           type: CategoryTypes.EDIT_CATEGORIES_FAILURE,
           error: error.response.data,
         });
-
         toast.error("La categoria no se pudo actualizar");
+      }
       });
   };
 }
@@ -190,6 +207,15 @@ function deleteCategory(id) {
   };
 }
 
+function resetFields() {
+
+  return function (dispatch, getState) {
+
+      dispatch({
+          type: CategoryTypes.RESET_FIELDS
+      });
+  }
+}
 export {
   listCategories,
   handleCategoryChange,
@@ -199,4 +225,5 @@ export {
   deleteCategory,
   setCategoryDefaults,
   listAllCategories,
+  resetFields
 };

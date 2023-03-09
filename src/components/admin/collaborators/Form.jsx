@@ -29,8 +29,11 @@ class Form extends React.Component {
               this.props.collaborator.name ? this.props.collaborator.name : ""
             }
             name="name"
+            pattern="[A-Za-z ]{3,20}"
+            title="Utilice solo letras y espacios, minimo 3 caracteres, maximo 20 caracteres"
+          maxLength="20"
           />
-          <label for="name" class="form-label">
+          <label for="name" className="form-label">
             Nombre
           </label>
           </div>
@@ -50,8 +53,11 @@ class Form extends React.Component {
                 : ""
             }
             name="last_name"
+            pattern="[A-Za-z ]{3,20}"
+            title="Utilice solo letras y espacios, minimo 3 caracteres, maximo 20 caracteres"
+          maxLength="20"
           />
-          <label for="lastName" class="form-label">
+          <label for="lastName" className="form-label">
             Apellido
           </label>
           </div>
@@ -71,6 +77,9 @@ class Form extends React.Component {
                   : ""
               }
               name="legajo"
+              pattern="[0-9]{5,5}"
+              title="Utilice solo numeros, maximo 5 caracteres"
+            maxLength="5"
             />
           <label for="legajo" class="form-label">
             Legajo
@@ -79,7 +88,7 @@ class Form extends React.Component {
           
         </div>
         <div className="col-md-6">
-        <div class="input-group">
+        <div className="input-group">
           <div className="form-floating">
           <select
               disabled={this.props.enabled ? true : null}
@@ -139,7 +148,7 @@ class Form extends React.Component {
               })}
 
             </select>
-        <label for="society" class="form-label">
+        <label for="society" className="form-label">
             Sociedad
           </label>
           </div>

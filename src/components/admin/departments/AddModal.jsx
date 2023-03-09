@@ -30,7 +30,7 @@ class AddModal extends React.Component {
   componentDidMount() {
     this.props.setDepartmentDefaults();
     this.props.resetFields();
-    this.props.listAllSocieties();
+    // this.props.listAllSocieties();
   }
 
   openAddSocietyModal() {

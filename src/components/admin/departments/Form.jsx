@@ -30,6 +30,9 @@ class Form extends React.Component {
                 this.props.department.name ? this.props.department.name : ""
               }
               name="name"
+              pattern="[A-Za-z ]{3,30}"
+              title="Utilice solo letras y espacios, minimo 3 caracteres, maximo 30 caracteres"
+            maxLength="30"
             />
  <label for="name">Nombre</label>
             </div>

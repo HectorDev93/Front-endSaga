@@ -182,8 +182,8 @@ class Department extends React.Component {
 
   componentDidMount() {
     this.props.setDepartmentDefaults();
-    this.props.listDepartments();
-    this.props.listAllSocieties();
+     this.props.listDepartments();
+    this.props.listAllSocieties(); 
   }
 
   openAddModal = () => {

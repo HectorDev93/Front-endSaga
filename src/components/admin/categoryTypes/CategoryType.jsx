@@ -156,7 +156,7 @@ class CategoryType extends React.Component {
  */
     this.props.setCategoryTypeDefaults();
     this.props.listCategoryTypes();
-    this.props.listAllCategories();
+    //this.props.listAllCategories();
   }
 
   openAddModal = (type) => {

@@ -44,7 +44,7 @@ class AddModal extends React.Component {
         this.props.setRequesDefaults();
         this.props.resetFields();
         this.props.listAllLocations();
-        this.props.listAllCategories();
+       // this.props.listAllCategories();
         this.props.listAllCategoryTypes();
         this.props.listAllPriorities();
         this.props.listAllCollaborators();

@@ -89,11 +89,20 @@ function addReques(name, cb) {
         cb();
       })
       .catch((error) => {
+        if(error.response.status === 303){
+          dispatch({
+          type: RequesTypes.CREATE_REQUESS_FAILURE,
+          error: error.response.data,
+        });
+          //toast.error("Esta categoria existe" + JSON.stringify(error.response.status));
+          toast.error("Este caso existe");
+        }else{
         dispatch({
           type: RequesTypes.CREATE_REQUESS_FAILURE,
           error: error.response.data,
         });
         toast.error("hubo un error al crear actividad");
+      }
       });
   };
 }
@@ -149,12 +158,21 @@ function editReques(name, id, cb) {
       })
 
       .catch((error) => {
+        if(error.response.status === 303){
+          dispatch({
+          type: RequesTypes.EDIT_REQUESS_FAILURE,
+          error: error.response.data,
+        });
+          //toast.error("Esta categoria existe" + JSON.stringify(error.response.status));
+          toast.error("Este caso existe");
+        }else{
         dispatch({
           type: RequesTypes.EDIT_REQUESS_FAILURE,
           error: error.response.data,
         });
 
         toast.error("Hubo un error al actualizar actividad");
+      }
       });
   };
 }
@@ -189,7 +207,7 @@ function deleteReques(id) {
           error: error.response.data,
         });
 
-        toast.error("hubo un error alleliminar actividad");
+        toast.error("hubo un error al eliminar actividad");
       });
   };
 }

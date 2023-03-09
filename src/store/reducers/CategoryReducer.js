@@ -19,7 +19,10 @@ const categoryReducer = function (state = initialState, action) {
         case CategoryTypes.SET_CATEGORY_DEFAULTS:
             return {
                 ...state,
-                category: {...state.category},
+                category: {
+                    id: "",
+                    name: ""
+                },
                 validation_errors: null,
                 list_spinner: false,
                 create_update_spinner: false
@@ -65,8 +68,8 @@ const categoryReducer = function (state = initialState, action) {
             return {
                 ...state,
                 create_update_spinner: false,
-                error_message: action.error.message,
-                validation_errors: action.error.errors,
+               /*  error_message: action.error.message,
+                validation_errors: action.error.errors, */
             };
         case CategoryTypes.SHOW_CATEGORY:
             return {
@@ -120,6 +123,14 @@ const categoryReducer = function (state = initialState, action) {
                 ...state,
                 list_spinner: false,
             };
+            case CategoryTypes.RESET_FIELDS:
+                return {
+                    ...state,
+                    category: {
+                        id: "",
+                        name: ""
+                    }
+                };
         default:
             return state;
     }

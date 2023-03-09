@@ -76,7 +76,7 @@ const locationReducer = function (state = initialState, action) {
                 ...state,
                 create_update_spinner: false,
                 //error_message: action.error.message,
-                validation_errors: action.error.errors,
+                //validation_errors: action.error.errors,
                 success_message: ""
             };
         case LocationTypes.SHOW_LOCATION:

@@ -54,6 +54,9 @@ class Form extends React.Component {
                 this.props.categoryType.name ? this.props.categoryType.name : ""
               }
               name="name"
+              pattern="[A-Za-z ]{3,25}"
+              title="Utilice solo letras y espacios, minimo 3 caracteres, maximo 25 caracteres"
+            maxLength="25"
             />
           </div>
         </div>

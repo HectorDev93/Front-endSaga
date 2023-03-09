@@ -82,6 +82,7 @@ class Reques extends React.Component {
           dataField: "id",
           text: "ID",
           sort: true,
+          editable: false,
           headerSortingStyle,
           headerAlign: "center",
           align: "center",
@@ -264,14 +265,14 @@ class Reques extends React.Component {
 
     this.props.setRequesDefaults();
     this.props.listRequess(localStorage.getItem("user.id"));
-    this.props.listAllSocieties();
+    /* this.props.listAllSocieties();
     this.props.listAllDepartments();
     this.props.listAllLocations();
     this.props.listAllCollaborators();
     this.props.listAllConditions();
     this.props.listAllCategories();
     this.props.listAllCategoryTypes();
-    this.props.listAllPriorities();
+    this.props.listAllPriorities(); */
   }
 
   openAddModal = () => {
@@ -613,7 +614,7 @@ activities = (rows[i].description);
                               filter={filterFactory()}
                               filterPosition="top"
                               pagination={paginationFactory()}
-                              cellEdit={cellEditFactory({
+                             /*  cellEdit={cellEditFactory({
                                 mode: "dbclick",
                                 blurToSave: true,
                                 onStartEdit: (
@@ -640,7 +641,7 @@ activities = (rows[i].description);
                                     this.handleUpdate(row, oldValue, newValue);
                                   }
                                 },
-                              })}
+                              })} */
                               noDataIndication="Tabla esta vacia"
                               striped
                               hover
@@ -673,14 +674,14 @@ activities = (rows[i].description);
 const mapStateToProps = (state, ownProps) => {
   return {
     reques: state.reques,
-    all_societies: state.society.all_societies,
+   /*  all_societies: state.society.all_societies,
     all_departments: state.department.all_departments,
     all_locations: state.location.all_locations,
     all_condition: state.condition.all_conditions,
     all_categories: state.category.all_categories,
     all_categoryTypes: state.categoryType.all_categoryTypes,
     all_collaborators: state.collaborator.all_collaborators,
-    all_priorities: state.priority.all_priorities,
+    all_priorities: state.priority.all_priorities, */
   };
 };
 

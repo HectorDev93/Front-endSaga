@@ -97,11 +97,20 @@ function addLocation (name, cb) {
 
             cb();
         }).catch(error => {
+            if(error.response.status === 303){
+              dispatch({
+              type: LocationTypes.CREATE_LOCATIONS_FAILURE,
+              error: error.response.data,
+            });
+              //toast.error("Esta categoria existe" + JSON.stringify(error.response.status));
+              toast.error("Esta localidad existe");
+            }else{
             dispatch({
                 type: LocationTypes.CREATE_LOCATIONS_FAILURE,
                 error: error.response.data
             })
             toast.error("Hubo un error al crear localidad");
+        }
         });
     }
 }
@@ -178,12 +187,21 @@ function editLocation(name, id, cb)
               }, 500)
             }, 10)
         }).catch(error => {
+            if(error.response.status === 303){
+              dispatch({
+              type: LocationTypes.EDIT_LOCATIONS_FAILURE,
+              error: error.response.data,
+            });
+              //toast.error("Esta categoria existe" + JSON.stringify(error.response.status));
+              toast.error("Esta localidad existe");
+            }else{
             dispatch({
                 type: LocationTypes.EDIT_LOCATIONS_FAILURE,
                 error: error.response.data
             })
             
             toast.error("Hubo un eeror al actualizar localidad");
+        }
         });
     }
 }

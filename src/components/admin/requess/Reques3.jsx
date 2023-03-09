@@ -90,6 +90,7 @@ class Reques extends React.Component {
           dataField: "numCase",
           text: "Num case",
           sort: true,
+          editable: false,
           filter: textFilter(),
           headerSortingStyle,
           headerAlign: "center",
@@ -256,14 +257,14 @@ class Reques extends React.Component {
   componentDidMount() {
     this.props.setRequesDefaults();
     this.props.listRequess(localStorage.getItem("user.id"));
-    this.props.listAllSocieties();
+    /* this.props.listAllSocieties();
     this.props.listAllDepartments();
     this.props.listAllLocations();
     this.props.listAllCollaborators();
     this.props.listAllConditions();
     this.props.listAllCategories();
     this.props.listAllCategoryTypes();
-    this.props.listAllPriorities();
+    this.props.listAllPriorities(); */
   }
 
   openAddModal = () => {
@@ -605,7 +606,7 @@ activities = (rows[i].description);
                        defaultSorted={defaultSorted}
                        filter={filterFactory()}
                        pagination={paginationFactory()}
-                       cellEdit={cellEditFactory({
+                      /*  cellEdit={cellEditFactory({
                          mode: "dbclick",
                          blurToSave: true,
                          onStartEdit: (
@@ -632,7 +633,7 @@ activities = (rows[i].description);
                              this.handleUpdate(row, oldValue, newValue);
                            }
                          },
-                       })}
+                       })} */
                        noDataIndication="Tabla esta vacia"
                        striped
                        hover

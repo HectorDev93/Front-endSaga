@@ -89,11 +89,20 @@ function addCollaborator(name, cb) {
         cb();
       })
       .catch((error) => {
+        if(error.response.status === 303){
+          dispatch({
+          type: CollaboratorTypes.CREATE_COLLABORATORS_FAILURE,
+          error: error.response.data,
+        });
+          //toast.error("Esta categoria existe" + JSON.stringify(error.response.status));
+          toast.error("Este lejago existe");
+        }else{
         dispatch({
           type: CollaboratorTypes.CREATE_COLLABORATORS_FAILURE,
           error: error.response.data,
         });
         toast.error("Hubo error al crear colaborador");
+      }
       });
   };
 }
@@ -149,12 +158,21 @@ function editCollaborator(name, id, cb) {
       })
 
       .catch((error) => {
+        if(error.response.status === 303){
+          dispatch({
+          type: CollaboratorTypes.EDIT_COLLABORATORS_FAILURE,
+          error: error.response.data,
+        });
+          //toast.error("Esta categoria existe" + JSON.stringify(error.response.status));
+          toast.error("Este lejago existe");
+        }else{
         dispatch({
           type: CollaboratorTypes.EDIT_COLLABORATORS_FAILURE,
           error: error.response.data,
         });
 
         toast.error("Hubo un error al actualizar los datos del colaborador");
+      }
       });
   };
 }

@@ -93,10 +93,14 @@ class Login extends Component {
         }
       },
       (err) => {
-        this.setState({
+        toast.error(err.response.data.message);
+        this.setState({isLoading: false, errors: err.response.data.errors
+        })
+       /*  this.setState({
           error_message: err.response.data.message,
           errors: err.response.data.errors,
-        });
+          isLoading: false
+        }); */
       }
     );
   }
@@ -138,10 +142,13 @@ class Login extends Component {
                     placeholder="Usuario Masisa"
                     onChange={this.handleUsername}
                     value={this.state.username}
+                    pattern="[A-Za-z-_]{5,20}"
+                    title="Utilice solo letras y underscore, minimo 5 caracteres, maximo 20 caracteres"
+                  maxLength="20"
                   />
                   <div className="input-group-append">
                     <div className="input-group-text">
-                      <span className="fas fa-envelope"></span>
+                      <span className="fas fa-user"></span>
                     </div>
                   </div>
                   <span className="glyphicon glyphicon-envelope form-control-feedback"></span>
