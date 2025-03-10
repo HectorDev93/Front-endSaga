@@ -7,6 +7,7 @@ import {
   editSociety,
   listSocieties,
   setSocietyDefaults,
+  resetFields
   //showSociety,
 } from "../../../store/actions/SocietyActions";
 //modal
@@ -148,6 +149,7 @@ class Society extends React.Component {
     this.setState({
       show_add_society_modal: false,
     });
+    this.props.setSocietyDefaults()
   }
   handleDelete(row) {
     Swal.fire({
@@ -362,6 +364,7 @@ const mapDispatchToProps = (dispatch) => {
     deleteSociety: (id) => dispatch(deleteSociety(id)),
     /*showSociety: (id) => dispatch(showSociety(id)),*/
       editSociety: (dsc, id) => dispatch(editSociety(dsc, id)), 
+      resetFields: () => dispatch(resetFields()),
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Society);

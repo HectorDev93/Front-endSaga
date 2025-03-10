@@ -83,28 +83,37 @@ function listAllCategoryTypes() {
  */
 function addCategoryType(name, cb) {
   return function (dispatch, getState) {
-    // start creation show spinner
+    
     dispatch({
       type: CategoryTypeTypes.CREATE_CATEGORY_TYPES,
     });
 
-    // async call must dispatch action whether on success or failure
+    
     CategoryType.add(name)
       .then((response) => {
         dispatch({
           type: CategoryTypeTypes.CREATE_CATEGORY_TYPES_SUCCESS,
           data: response.data,
         });
-        toast.success("Sub categoria creada correctamente");
+        toast.success("Solicitud exitosa");
 
         cb();
       })
       .catch((error) => {
+        if(error.response.status === 303){
+          dispatch({
+          type: CategoryTypeTypes.CREATE_CATEGORY_TYPES_FAILURE,
+          error: error.response.data,
+        });
+          //toast.error("Esta categoria existe" + JSON.stringify(error.response.status));
+          toast.error("Este elemento ya existe en el sistema");
+        }else{
         dispatch({
           type: CategoryTypeTypes.CREATE_CATEGORY_TYPES_FAILURE,
           error: error.response.data,
         });
-        toast.error("Oops hubo un error creando la sub categoria");
+        toast.warning("Permiso denegado");
+      }
       });
   };
 }
@@ -154,19 +163,27 @@ function editCategoryType(name, id, cb) {
             data: response.data,
           });
 
-          toast.success("La sub categoria fue actualizada correctamente");
-          
+          toast.success("Registro actualizado correctamente");
+     
           // eslint-disable-next-line no-unused-expressions
           cb();
       })
 
       .catch((error) => {
+        if(error.response.status === 303){
+          dispatch({
+          type: CategoryTypeTypes.EDIT_CATEGORY_TYPES_FAILURE,
+          error: error.response.data,
+        });
+          //toast.error("Esta categoria existe" + JSON.stringify(error.response.status));
+          toast.error("Este registro existe en el sistema");
+        }else{
         dispatch({
           type: CategoryTypeTypes.EDIT_CATEGORY_TYPES_FAILURE,
           error: error.response.data,
         });
-
-        toast.error("Oops hubo un error actualizando la categoria");
+        toast.warning("Permiso denegado");
+        }
       });
   };
 }
@@ -184,16 +201,13 @@ function deleteCategoryType(id) {
     // async call must dispatch action whether on success or failure
     CategoryType.remove(id)
       .then((response) => {
-        setTimeout(() => {
+        
           dispatch({
             type: CategoryTypeTypes.DELETE_CATEGORY_TYPES_SUCCESS,
             message: response.data.message,
             id: id,
           });
-
-          toast.success("Sub categoria eliminada correctamente");
-        
-        }, 10);
+          toast.success("Solicitud exitosa");
       })
       .catch((error) => {
         dispatch({
@@ -201,7 +215,7 @@ function deleteCategoryType(id) {
           error: error.response.data,
         });
 
-        toast.error("Oops hubo un error eliminando la sub categoria");
+        toast.warning("Permiso denegado");
       });
   };
 }

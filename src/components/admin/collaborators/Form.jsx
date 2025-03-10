@@ -87,6 +87,46 @@ class Form extends React.Component {
           </div>
           
         </div>
+       
+
+        <div className="col-md-6">
+          <div className="input-group">
+            <div className="form-floating">
+        
+              <select
+              name="society"
+              id="society"
+              required
+              className="form-control"
+              onChange={this.props.handleCollaboratorChange}
+              value={this.props.collaborator.society}
+            >
+              <option value="">selecciona sociedad</option>
+              {this.props.all_societies.map((cat) => {
+                return (
+                  <option key={cat.id} value={cat.id}>
+                    {cat.name}
+                  </option>
+                );
+              })}
+
+            </select>
+        <label for="society" className="form-label">
+            Sociedad
+          </label>
+          </div>
+
+            <button
+            id="btn-generic2"
+                type="button"
+                className="btn btn-primary"
+                onClick={this.props.openAddSocietyModal.bind(this)}
+              >
+                <i className="fas fa-plus"></i>
+              </button>
+          </div>
+        </div>
+        
         <div className="col-md-6">
         <div className="input-group">
           <div className="form-floating">
@@ -99,7 +139,7 @@ class Form extends React.Component {
               onChange={this.props.handleCollaboratorChange}
               value={this.props.collaborator.department}
             >
-              <option>selecciona departamento</option>
+              <option value="">selecciona departamento</option>
               {this.props.all_departments.map((cat) => {
                 return (
                   <option key={cat.id} value={cat.id}>
@@ -124,43 +164,6 @@ class Form extends React.Component {
 </div>
          
 
-        </div>
-
-        <div className="col-md-6">
-          <div className="input-group">
-            <div className="form-floating">
-        
-              <select
-              name="society"
-              id="society"
-              required
-              className="form-control"
-              onChange={this.props.handleCollaboratorChange}
-              value={this.props.collaborator.society}
-            >
-              <option >selecciona sociedad</option>
-              {this.props.all_societies.map((cat) => {
-                return (
-                  <option key={cat.id} value={cat.id}>
-                    {cat.name}
-                  </option>
-                );
-              })}
-
-            </select>
-        <label for="society" className="form-label">
-            Sociedad
-          </label>
-          </div>
-            <button
-            id="btn-generic2"
-                type="button"
-                className="btn btn-primary"
-                onClick={this.props.openAddSocietyModal.bind(this)}
-              >
-                <i className="fas fa-plus"></i>
-              </button>
-          </div>
         </div>
         <div className="col-md-6">
           <div className="input-group">

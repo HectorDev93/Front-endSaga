@@ -84,7 +84,7 @@ function addReques(name, cb) {
           type: RequesTypes.CREATE_REQUESS_SUCCESS,
           data: response.data,
         });
-        toast.success("Actividad creada correctamente");
+        toast.success("Solicitud exitosa");
 
         cb();
       })
@@ -95,13 +95,13 @@ function addReques(name, cb) {
           error: error.response.data,
         });
           //toast.error("Esta categoria existe" + JSON.stringify(error.response.status));
-          toast.error("Este caso existe");
+          toast.error("Este registro existe en el sistema");
         }else{
         dispatch({
           type: RequesTypes.CREATE_REQUESS_FAILURE,
           error: error.response.data,
         });
-        toast.error("hubo un error al crear actividad");
+        toast.warning("Permiso denegado");
       }
       });
   };
@@ -152,7 +152,7 @@ function editReques(name, id, cb) {
             data: response.data,
           });
 
-          toast.success("Actividad actualizada correctamente");
+          toast.success("Solicitud exitosa");
           
           cb();
       })
@@ -171,7 +171,7 @@ function editReques(name, id, cb) {
           error: error.response.data,
         });
 
-        toast.error("Hubo un error al actualizar actividad");
+        toast.warning("Permiso denegado");
       }
       });
   };
@@ -190,16 +190,14 @@ function deleteReques(id) {
     // async call must dispatch action whether on success or failure
     Reques.remove(id)
       .then((response) => {
-        setTimeout(() => {
+
           dispatch({
             type: RequesTypes.DELETE_REQUESS_SUCCESS,
             message: response.data.message,
             id: id,
           });
 
-          toast.success("Actividad eliminada correctamente");
-        
-        }, 10);
+          toast.success("Solicitud exitosa");
       })
       .catch((error) => {
         dispatch({
@@ -207,7 +205,7 @@ function deleteReques(id) {
           error: error.response.data,
         });
 
-        toast.error("hubo un error al eliminar actividad");
+        toast.warning("Permiso denegado");
       });
   };
 }

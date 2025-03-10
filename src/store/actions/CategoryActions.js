@@ -83,7 +83,7 @@ function addCategory(name, cb) {
           type: CategoryTypes.CREATE_CATEGORIES_SUCCESS,
           data: response.data,
         });
-        toast.success("Categoria creada correctamente");
+        toast.success("Solicitud exitosa");
 
         cb();
       })
@@ -94,13 +94,13 @@ function addCategory(name, cb) {
           error: error.response.data,
         });
           //toast.error("Esta categoria existe" + JSON.stringify(error.response.status));
-          toast.error("Esta categoria existe");
+          toast.error("Este elemento ya existe en el sistema");
         }else{
         dispatch({
           type: CategoryTypes.CREATE_CATEGORIES_FAILURE,
           error: error.response.data,
         });
-        toast.error("Oops hubo error al crear categoria");
+        toast.warning("Permiso denegado");
       }
       });
   };
@@ -151,7 +151,7 @@ function editCategory(name, id, cb) {
             data: response.data,
           });
 
-          toast.success("Categoria actualizada correctamente");
+          toast.success("Registro actualizado correctamente");
      
       cb();
         })
@@ -162,13 +162,13 @@ function editCategory(name, id, cb) {
           error: error.response.data,
         });
           //toast.error("Esta categoria existe" + JSON.stringify(error.response.status));
-          toast.error("Esta categoria existe");
+          toast.error("Este registro existe en el sistema");
         }else{
         dispatch({
           type: CategoryTypes.EDIT_CATEGORIES_FAILURE,
           error: error.response.data,
         });
-        toast.error("La categoria no se pudo actualizar");
+        toast.warning("Permiso denegado");
       }
       });
   };
@@ -193,7 +193,7 @@ function deleteCategory(id) {
             id: id,
           });
 
-          toast.success("Categoria eliminada correctamente");
+          toast.success("Solicitud exitosa");
        
       })
       .catch((error) => {
@@ -202,7 +202,7 @@ function deleteCategory(id) {
           error: error.response.data,
         });
 
-        toast.error("Oops hubo un error al eliminar la categoria");
+        toast.warning("Permiso denegado");
       });
   };
 }

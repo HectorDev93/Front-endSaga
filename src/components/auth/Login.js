@@ -20,6 +20,7 @@ class Login extends Component {
       errors: null,
       isLoading: false,
       labelButton: "Entrar",
+      showPwd: false,
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -40,14 +41,18 @@ class Login extends Component {
       password: e.target.value,
     });
   }
-
+  setShowPwd(e) {
+    this.setState({
+      showPwd: !this.state.showPwd,
+    });
+  }
   handleSubmit(e) {
     e.preventDefault();
 
     this.setState({
       error_message: null,
       errors: null,
-      isLoading: true
+      isLoading: true,
     });
 
     /* if (this.state.username === "" || this.state.password === "") {
@@ -63,40 +68,37 @@ class Login extends Component {
       (response) => {
         // if(response.data.user.is_admin == 1) {
         if (response.data.user) {
-
-         // console.log(response.data.user);
+          // console.log(response.data.user);
           //localStorage.setItem("user.id", response.data.user.id);
-         for (var i in response.data.user) {
+          for (var i in response.data.user) {
             localStorage.setItem("user." + i, response.data.user[i]);
             //<Redirect to={{pathname: "/"}}/>
-          } 
+          }
           /* setTimeout(() => {
               //return (<Redirect to="/" />);
               //this.props.history.push("/admin");
             }, 100); */
-            this.props.history.push("/admin");
-            this.props.history.push({
-              pathname: '/admin',
-              state: { role: true }
-            })
-            
-      //window.location.reload();
+          this.props.history.push("/admin");
+          this.props.history.push({
+            pathname: "/admin",
+            state: { role: true },
+          });
+
+          //window.location.reload();
         } else {
           localStorage.clear();
 
-           this.setState({
+          this.setState({
             isLoading: false,
           });
-        
-            toast.error("Usuario o clave incorrecta");
-         
+
+          toast.error("Usuario o clave incorrecta");
         }
       },
       (err) => {
         toast.error(err.response.data.message);
-        this.setState({isLoading: false, errors: err.response.data.errors
-        })
-       /*  this.setState({
+        this.setState({ isLoading: false, errors: err.response.data.errors });
+        /*  this.setState({
           error_message: err.response.data.message,
           errors: err.response.data.errors,
           isLoading: false
@@ -113,7 +115,9 @@ class Login extends Component {
             <div className="login-logo">
               <b>SA</b>GA
               <hr></hr>
-              <p className="nameSystem"><b>Sistema de Administración y </b>Gestión de Actividades IT</p>
+              <p className="nameSystem">
+                <b>Sistema de Administración y </b>Gestión de Actividades IT
+              </p>
             </div>
           </div>
           <div className="card-body">
@@ -144,7 +148,7 @@ class Login extends Component {
                     value={this.state.username}
                     pattern="[A-Za-z-_]{5,20}"
                     title="Utilice solo letras y underscore, minimo 5 caracteres, maximo 20 caracteres"
-                  maxLength="20"
+                    maxLength="20"
                   />
                   <div className="input-group-append">
                     <div className="input-group-text">
@@ -166,7 +170,7 @@ class Login extends Component {
                   }`}
                 >
                   <input
-                    type="password"
+                    type={this.state.showPwd ? "text" : "password"}
                     name="password"
                     required
                     className="form-control"
@@ -175,11 +179,23 @@ class Login extends Component {
                     value={this.state.password}
                     autoComplete="off"
                   />
-                  <div className="input-group-append">
-                    <div className="input-group-text">
-                      <span className="fas fa-lock"></span>
+                   <div
+                    className="input-group-append"
+                    onClick={() => this.setShowPwd(!this.state.showPwd)}
+                  >
+                    <div className="input-group-text pointer">
+                      {this.state.showPwd ? (
+                        <span className="fas f-pm fa-eye"></span>
+                      ) : (
+                        <span className="fas fa-xs fa-eye-slash"></span>
+                      )}
                     </div>
-                  </div>
+                  </div> 
+                   {/* <div className="input-group-append">
+                    <div className="input-group-text">
+                      <span className="fas fa-duetone fa-eye"></span>
+                    </div>
+                  </div>  */}
                   <span className="glyphicon glyphicon-lock form-control-feedback"></span>
                   {this.state.errors && this.state.errors.password ? (
                     <div className="help-block">

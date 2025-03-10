@@ -2,16 +2,40 @@ import React from "react";
 
 import { Bar, Pie } from "react-chartjs-2";
 import ChartDataLabels from "chartjs-plugin-datalabels";
+import { startTransition } from "react";
 
 const ChartDash = (props) => {
   var options = {
     responsive: true,
-    animation: {
-      duration: 0
-  },
+    animation: false,
+   // maintainAspectRatio: false,
+    scales:{
+      y: {
+        min: 0,
+        max: 100
+      },
+      x:{
+        ticks: { 
+          font:{
+            color: 'rgba(0,0,0,0)',
+            size: 17,
+            weight: 'bold'
+          }
+          
+        }
+      }
+    },
     plugins: {
+      legend:{
+        labels:{
+          font:{
+            size: 17,
+            weight: 'bold'
+          }
+        }
+      },
       datalabels: {
-        /*    formatter: (value, ctx) => {
+          /*  formatter: (value, ctx) => {
           let datasets = ctx.chart.data.datasets;
             let percentage;
           if (datasets.indexOf(ctx.dataset) === datasets.length - 1) {
@@ -21,8 +45,16 @@ const ChartDash = (props) => {
           } else {
             return percentage;
           }
-        }, */
-        color: "rgba(0,0,0,1)",
+          },  */
+          align: 'center',
+          clamp: true,
+        anchor: 'center',
+        font:{
+          size: 17,
+          weight: 'bold'
+
+        },
+        color: "rgba(0,0,0,0.90)",
       },
     },
   };
@@ -32,6 +64,9 @@ const ChartDash = (props) => {
       {
         label: props.labelTitle,
         data: props.dataset,
+        tension: 100,
+        fill: false,
+        pointRadius: 1000,
         backgroundColor: props.colours,
         borderColor: props.colours,
         borderWidth: 1,
@@ -44,8 +79,8 @@ const ChartDash = (props) => {
         <Bar
           data={data}
           plugins={[ChartDataLabels]}
-          width={500}
-          height={200}
+         // width={500}
+         // height={-200}
           options={options}
         />
       ) : (

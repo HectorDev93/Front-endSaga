@@ -84,7 +84,7 @@ function addSociety(name, cb) {
           type: SocietyTypes.CREATE_SOCIETIES_SUCCESS,
           data: response.data,
         });
-        toast.success("Sociedad creada correctamente");
+        toast.success("Solicitud exitosa");
 
         cb();
       })
@@ -95,13 +95,13 @@ function addSociety(name, cb) {
           error: error.response.data,
         });
           //toast.error("Esta categoria existe" + JSON.stringify(error.response.status));
-          toast.error("Esta sociedad existe");
+          toast.error("Este registro existe en el sistema");
         }else{
         dispatch({
           type: SocietyTypes.CREATE_SOCIETIES_FAILURE,
           error: error.response.data,
         });
-        toast.error("Hubo un error al crear sociedad");
+        toast.warning("Permiso denegado");
       }
       });
   };
@@ -146,15 +146,15 @@ function editSociety(name, id, cb) {
 
     // async call must dispatch action whether on success or failure
     Society.edit(name, id)
+
       .then((response) => {
-        setTimeout(() => {
+
           dispatch({
             type: SocietyTypes.EDIT_SOCIETIES_SUCCESS,
             data: response.data,
           });
 
-          toast.success("Sociedad actualizada correctamente");
-          setTimeout(() => {
+          toast.success("Registro actualizado correctamente");
             dispatch({
               type: SocietyTypes.LIST_SOCIETIES,
             });
@@ -171,13 +171,11 @@ function editSociety(name, id, cb) {
                   error: error.response.data,
                 });
               });
-            setTimeout(() => {
+
               dispatch({
                 type: UtilTypes.HIDE_MESSAGE,
               });
-            }, 2000);
-          }, 500);
-        }, 10);
+            
       })
       .catch((error) => {
         if(error.response.status === 303){
@@ -186,14 +184,14 @@ function editSociety(name, id, cb) {
           error: error.response.data,
         });
           //toast.error("Esta categoria existe" + JSON.stringify(error.response.status));
-          toast.error("Esta sociedad existe");
+          toast.error("Este registro existe");
         }else{
         dispatch({
           type: SocietyTypes.EDIT_SOCIETIES_FAILURE,
           error: error.response.data,
         });
 
-        toast.error("Hubo un error actualizando la sociedad");
+        toast.warning("Permiso denegado");
       }
       });
   };
@@ -212,20 +210,19 @@ function deleteSociety(id) {
     // async call must dispatch action whether on success or failure
     Society.remove(id)
       .then((response) => {
-        setTimeout(() => {
+        
           dispatch({
             type: SocietyTypes.DELETE_SOCIETIES_SUCCESS,
             message: response.data.message,
             id: id,
           });
 
-          toast.success("Sociedad eliminada correctamente");
-          setTimeout(() => {
+          toast.success("Solicitud exitosa");
+        
             dispatch({
               type: UtilTypes.HIDE_MESSAGE,
             });
-          }, 3000);
-        }, 10);
+          
       })
       .catch((error) => {
         dispatch({
@@ -233,9 +230,19 @@ function deleteSociety(id) {
           error: error.response.data,
         });
 
-        toast.error("Hubo un error eliminando la sociedad");
+        toast.warning("Permiso denegado");
       });
   };
+}
+
+function resetFields() {
+
+  return function (dispatch, getState) {
+
+      dispatch({
+          type: SocietyTypes.RESET_FIELDS
+      });
+  }
 }
 
 export {
@@ -247,4 +254,5 @@ export {
   deleteSociety,
   setSocietyDefaults,
   listAllSocieties,
+  resetFields
 };

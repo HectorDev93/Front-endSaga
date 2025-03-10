@@ -22,7 +22,12 @@ const locationReducer = function (state = initialState, action) {
         case LocationTypes.SET_LOCATION_DEFAULTS:
             return {
                 ...state,
-                location: {...state.location},
+                //location: {...state.location},
+                location: {
+                    id: "",
+                    name: "",
+                    description: ""
+                },
                 success_message: "",
                 error_message: "",
                 validation_errors: null,

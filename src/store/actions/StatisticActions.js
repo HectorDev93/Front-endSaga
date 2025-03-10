@@ -39,7 +39,7 @@ function listCountStatistic(id, user, year){
           data: response.data.data
         });
       });
-    }, 100)
+    }, 0.5)
 
     }
   }
@@ -63,7 +63,7 @@ function listCountStatistic(id, user, year){
         });
       });
       
-    }, 100)
+    }, 0.5)
     }
   }
   

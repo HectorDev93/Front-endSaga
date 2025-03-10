@@ -58,9 +58,9 @@ componentDidUpdate(){
               placeholder="Numero de caso"
               onChange={this.props.handleRequesChange}
               value={this.props.reques.numCase ? this.props.reques.numCase : ""}
-              pattern="[A-Z0-9]{10,10}"
-              title="Utilice solo letras mayusculas y numeros, minimo 10 caracteres"
-            maxLength="10"
+              pattern="[A-Z0-9]{6,6}"
+              title="Utilice solo letras mayusculas y numeros, minimo 6 caracteres"
+            maxLength="5"
             />
             <label htmlFor="numCase">Caso asistencia TI</label>
           </div>

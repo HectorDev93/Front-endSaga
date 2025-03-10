@@ -32,7 +32,7 @@ import BootstrapTable from "react-bootstrap-table-next";
 import filterFactory, { textFilter } from "react-bootstrap-table2-filter";
 import paginationFactory from "react-bootstrap-table2-paginator";
 import ToolkitProvider, { ColumnToggle } from "react-bootstrap-table2-toolkit";
-import cellEditFactory from "react-bootstrap-table2-editor";
+//import cellEditFactory from "react-bootstrap-table2-editor";
 //tools
 //import Tool from "../../../util";
 //alertas varias
@@ -658,6 +658,7 @@ activities = (rows[i].description);
 
           <AddModal
             all_locations={this.props.all_locations}
+            all_societies={this.props.all_societies}
             isOpen={this.state.show_add_reques_modal}
             toggle={this.closeAddModal.bind(this)}
             header={this.state.header}
@@ -674,14 +675,14 @@ activities = (rows[i].description);
 const mapStateToProps = (state, ownProps) => {
   return {
     reques: state.reques,
-   /*  all_societies: state.society.all_societies,
+    all_societies: state.society.all_societies,
     all_departments: state.department.all_departments,
     all_locations: state.location.all_locations,
     all_condition: state.condition.all_conditions,
     all_categories: state.category.all_categories,
-    all_categoryTypes: state.categoryType.all_categoryTypes,
+    //all_categoryTypes: state.categoryType.all_categoryTypes,
     all_collaborators: state.collaborator.all_collaborators,
-    all_priorities: state.priority.all_priorities, */
+    all_priorities: state.priority.all_priorities, 
   };
 };
 
@@ -697,7 +698,7 @@ const mapDispatchToProps = (dispatch) => {
     listAllLocations: () => dispatch(listAllLocations()),
     listAllConditions: () => dispatch(listAllConditions()),
     listAllCategories: () => dispatch(listAllCategories()),
-    listAllCategoryTypes: () => dispatch(listAllCategoryTypes()),
+   // listAllCategoryTypes: () => dispatch(listAllCategoryTypes()),
     listAllCollaborators: () => dispatch(listAllCollaborators()),
     listAllPriorities: () => dispatch(listAllPriorities()),
 

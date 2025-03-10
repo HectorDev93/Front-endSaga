@@ -39,7 +39,7 @@ class Form extends React.Component {
             </div>
 
             <div className="col-md-6">
-        <div class="input-group">
+        <div className="input-group">
           <div className="form-floating">
           <select
               name="society"

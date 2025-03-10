@@ -145,6 +145,7 @@ class Location extends React.Component {
     this.setState({
       show_add_location_modal: false,
     });
+    this.props.setLocationDefaults()
   }
   handleDelete(row) {
    /*  // eslint-disable-next-line no-restricted-globals

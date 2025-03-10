@@ -20,7 +20,12 @@ const societyReducer = function (state = initialState, action) {
         case SocietyTypes.SET_SOCIETY_DEFAULTS:
             return {
                 ...state,
-                society: {...state.society},
+                //society: {...state.society},
+                society: {
+                    id: "",
+                    name: "",
+                    description: ""
+                },
                 validation_errors: null,
                 list_spinner: false,
                 create_update_spinner: false
@@ -121,6 +126,15 @@ const societyReducer = function (state = initialState, action) {
                 ...state,
                 list_spinner: false,
             };
+        case SocietyTypes.RESET_FIELDS:
+                return {
+                    ...state,
+                    society: {
+                        id: "",
+                        name: "",
+                        description: ""
+                    }
+                };
         default:
             return state;
     }

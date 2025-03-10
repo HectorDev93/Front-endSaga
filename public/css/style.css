@@ -32,6 +32,13 @@ html,body
     overflow-x: hidden; 
 } 
 
+/*font awesome*/
+.f-p{
+  font-size: 14px;
+}
+.f-pm{
+  font-size: 13px;
+}
 /*bootstrap*/
 .row{
   margin: 5px 0px 5px 0!important;
@@ -182,4 +189,7 @@ overflow: auto;
   }
   .invisible{
     display: none;
+  }
+  .pointer{
+    cursor: pointer;
   }

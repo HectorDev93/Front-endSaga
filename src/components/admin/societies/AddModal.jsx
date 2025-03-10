@@ -6,6 +6,7 @@ import {
   handleSocietyChange,
   listAllSocieties,
   listSocieties,
+  resetFields
 } from "../../../store/actions/SocietyActions";
 import Form from "./Form";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
@@ -22,6 +23,7 @@ class AddModal extends React.Component {
 
   componentDidMount() {
     this.props.setSocietyDefaults();
+    this.props.resetFields();
   }
 
   handleSocietyChange(e) {
@@ -88,6 +90,7 @@ const mapDispatchToProps = (dispatch) => {
     setSocietyDefaults: () => dispatch(setSocietyDefaults()),
     listAllSocieties: () => dispatch(listAllSocieties()),
     listSocieties: () => dispatch(listSocieties()),
+    resetFields: () => dispatch(resetFields())
   };
 };
 

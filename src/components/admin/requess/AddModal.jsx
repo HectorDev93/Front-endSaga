@@ -20,6 +20,7 @@ import { listAllCategoryTypes, listCategoryTypeCategory } from "../../../store/a
 import { listAllPriorities } from "../../../store/actions/PriorityActions";
 import { listAllConditions } from "../../../store/actions/ConditionActions";
 import { listAllCollaborators } from "../../../store/actions/CollaboratorActions";
+import { listAllSocieties } from "../../../store/actions/SocietyActions";
 
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 
@@ -49,6 +50,7 @@ class AddModal extends React.Component {
         this.props.listAllPriorities();
         this.props.listAllCollaborators();
         this.props.listAllConditions();
+        this.props.listAllSocieties();
       }
 
 
@@ -148,7 +150,7 @@ let rsp = this.props.all_collaborators.find(item => item.id === this.props.reque
               self.props.listAllCategories();
               self.props.listAllCategoryTypes();
               self.props.listAllCollaborators();
-              
+              self.props.listAllSocieties();
         
             }, 500);
           });
@@ -170,6 +172,7 @@ let rsp = this.props.all_collaborators.find(item => item.id === this.props.reque
                 self.props.listAllCategories();
                 self.props.listAllCategoryTypes();
                 self.props.listAllCollaborators();
+                self.props.listAllSocieties();
               }, 500);
             }
           );
@@ -188,6 +191,7 @@ let rsp = this.props.all_collaborators.find(item => item.id === this.props.reque
               reques={this.props.reques.reques}
               all_locations={this.props.all_locations}
               all_categories={this.props.all_categories}
+              all_societies= {this.props.all_societies}
               all_categoryTypes={this.props.all_categoryTypes}
               all_priorities={this.props.all_priorities}
               all_conditions={this.props.all_conditions}
@@ -246,7 +250,8 @@ const mapStateToProps = (state, ownProps) => {
       all_priorities: state.priority.all_priorities,
       all_collaborators: state.collaborator.all_collaborators,
       all_categoryTypes: state.categoryType.all_categoryTypes,
-      all_conditions: state.condition.all_conditions
+      all_conditions: state.condition.all_conditions,
+      all_societies: state.society.all_societies
     };
   };
   
@@ -264,6 +269,7 @@ const mapStateToProps = (state, ownProps) => {
       listAllConditions: () => dispatch(listAllConditions()),
       listAllCollaborators: () => dispatch(listAllCollaborators()),
       listAllCategoryTypes: () => dispatch(listAllCategoryTypes()),
+      listAllSocieties: () => dispatch(listAllSocieties()),
       listCategoryTypeCategory: (id) => dispatch(listCategoryTypeCategory(id)),
       listRequess: (user) => dispatch(listRequess(user)),
       resetFields: () => dispatch(resetFields()),

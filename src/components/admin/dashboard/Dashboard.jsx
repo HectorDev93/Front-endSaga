@@ -69,7 +69,7 @@ class Dashboard extends React.Component {
     };
 
     this.handleStatisticChange = this.handleStatisticChange.bind(this);
-    this.props.setStatisticDefaults();
+    //this.props.setStatisticDefaults();
   }
 
   /* highChartsRender() {
@@ -123,7 +123,7 @@ class Dashboard extends React.Component {
     //this.props.handleStatisticChange("userNow", localStorage.getItem("user.id"));
 
     window.addEventListener("storage", (e) => {
-      console.log(e);
+      //console.log(e);
       if (e.oldValue !== e.newValue) {
         //alert("hey cambiaste el local storage");
         localStorage.clear();
@@ -132,10 +132,38 @@ class Dashboard extends React.Component {
       // TODO: Algunos valores útiles { key, newValue, oldvalue } = e;
     });
   }
-  async componentDidMount() {
+  componentDidMount() {
+    //this.props.handleStatisticChange("userNow", 1);
     //alert(localStorage.getItem("user.id"));
-    //this.props.handleStatisticChange("userNow", localStorage.getItem('user.id'));
-    if (this.state.userR === "3") {
+    if(this.state.userNow !== null){
+      this.props.handleStatisticChange("userNow", this.state.userNow);
+    }
+    
+      //console.log(this.props.statistic.selection.userNow);
+       setTimeout(() => {
+      this.props.listCountStatistic(
+        this.props.statistic.selection.monthNow,
+        this.props.statistic.selection.userNow,
+        this.props.statistic.selection.yearNow
+      );
+      this.props.listCountGraph(
+        this.props.statistic.selection.monthNow,
+        this.props.statistic.selection.userNow,
+        this.props.statistic.selection.yearNow
+      );
+    }, 0); 
+  /*   this.props.listCountStatistic(
+      this.props.statistic.selection.monthNow,
+      this.props.statistic.selection.userNow,
+      this.props.statistic.selection.yearNow
+    );
+    this.props.listCountGraph(
+      this.props.statistic.selection.monthNow,
+      this.props.statistic.selection.userNow,
+      this.props.statistic.selection.yearNow
+    ); */
+   // console.log(this.props.statistic.selection);
+  /*   if (this.state.userR === "3") {
       this.props.handleStatisticChange("userNow", 0);
       setTimeout(() => {
         this.props.listCountStatistic(
@@ -164,7 +192,7 @@ class Dashboard extends React.Component {
         this.props.statistic.selection.yearNow
       );
     }, 1);
-    }
+    } */
 
     //this.props.setStatisticDefaults();
     /* const user = localStorage.getItem("user.id");
@@ -192,7 +220,7 @@ class Dashboard extends React.Component {
         this.props.statistic.selection.userNow,
         this.props.statistic.selection.yearNow
       );
-    }, 1);
+    }, 0.5);
   }
   onStartLoad(view) {
     if (view) {
@@ -254,6 +282,14 @@ class Dashboard extends React.Component {
       {
         id: "2",
         name: 2023,
+      },
+      {
+        id:"3",
+        name:2024
+      },
+      {
+        id:"4",
+        name:2025
       }
     ];
     const months = [
@@ -522,6 +558,7 @@ class Dashboard extends React.Component {
               to="/admin/categories"
             />
           </div>
+          <hr />
           <div className="row">
             <div className="col-md-6">
               <ChartDash
@@ -542,25 +579,50 @@ class Dashboard extends React.Component {
               />
             </div>
           </div>
+          <hr />
           <div className="row">
-            <section className="col-md-12 connectedSortable">
-              {/* <div id="atmospheric-composition"></div> */}
-
-              <ChartDash
+            <div className="col-md-12">
+            <ChartDash
                 type="bar"
                 labelTitle="Actividades por departmento"
                 labels={this.props.statistic.chartDepartment.labels}
                 dataset={this.props.statistic.chartDepartment.dataset}
                 colours={this.props.statistic.chartDepartment.colours}
               />
+            </div>
+         
+            
+            {/* <section className="col-md-12 connectedSortable"> */}
+              {/* <div id="atmospheric-composition"></div> */}
+{/* 
               <ChartDash
+                type="pie"
+                labelTitle="Actividades por departmento"
+                labels={this.props.statistic.chartDepartment.labels}
+                dataset={this.props.statistic.chartDepartment.dataset}
+                colours={this.props.statistic.chartDepartment.colours}
+              />
+              <ChartDash
+                type="pie"
+                labelTitle="Actividades por categoria"
+                labels={this.props.statistic.chartCategory.labels}
+                dataset={this.props.statistic.chartCategory.dataset}
+                colours={this.props.statistic.chartCategory.colours}
+              /> */}
+            {/* </section> */}
+          </div>
+          <div className="row">
+
+          <div className="col-md-12">
+            <ChartDash
                 type="bar"
                 labelTitle="Actividades por categoria"
                 labels={this.props.statistic.chartCategory.labels}
                 dataset={this.props.statistic.chartCategory.dataset}
                 colours={this.props.statistic.chartCategory.colours}
               />
-            </section>
+            </div>
+
           </div>
         </section>
       </div>

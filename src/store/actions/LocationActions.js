@@ -93,7 +93,7 @@ function addLocation (name, cb) {
                 type: LocationTypes.CREATE_LOCATIONS_SUCCESS,
                 data: response.data
             });
-            toast.success("Localidad creada correctamente");
+            toast.success("Solicitud exitosa");
 
             cb();
         }).catch(error => {
@@ -103,13 +103,13 @@ function addLocation (name, cb) {
               error: error.response.data,
             });
               //toast.error("Esta categoria existe" + JSON.stringify(error.response.status));
-              toast.error("Esta localidad existe");
+              toast.error("Este registro existe en el sistema");
             }else{
             dispatch({
                 type: LocationTypes.CREATE_LOCATIONS_FAILURE,
                 error: error.response.data
             })
-            toast.error("Hubo un error al crear localidad");
+            toast.warning("Permiso denegado");
         }
         });
     }
@@ -157,14 +157,14 @@ function editLocation(name, id, cb)
 
         // async call must dispatch action whether on success or failure
         Location.edit(name, id).then(response => {
-            setTimeout(() => {
+
             dispatch({
                 type: LocationTypes.EDIT_LOCATIONS_SUCCESS,
                 data: response.data
             });
             
-            toast.success("Localidad actualizada correctamente");
-            setTimeout(() => {
+            toast.success("Solicitud exitosa");
+
                 dispatch({
                     type: LocationTypes.LIST_LOCATIONS
                 });
@@ -179,13 +179,11 @@ function editLocation(name, id, cb)
                         error: error.response.data
                     });
                 });
-                setTimeout(() => {
+
                     dispatch({
                         type: UtilTypes.HIDE_MESSAGE
                     }); 
-                  }, 2000)
-              }, 500)
-            }, 10)
+
         }).catch(error => {
             if(error.response.status === 303){
               dispatch({
@@ -193,14 +191,14 @@ function editLocation(name, id, cb)
               error: error.response.data,
             });
               //toast.error("Esta categoria existe" + JSON.stringify(error.response.status));
-              toast.error("Esta localidad existe");
+              toast.error("Este registro existe en el sistema");
             }else{
             dispatch({
                 type: LocationTypes.EDIT_LOCATIONS_FAILURE,
                 error: error.response.data
             })
             
-            toast.error("Hubo un eeror al actualizar localidad");
+            toast.warning("Permiso denegado");
         }
         });
     }
@@ -221,20 +219,18 @@ function deleteLocation(id)
 
         // async call must dispatch action whether on success or failure
         Location.remove(id).then(response => {
-            setTimeout(() => {
+
                 dispatch({
                     type: LocationTypes.DELETE_LOCATIONS_SUCCESS,
                     message: response.data.message,
                     id: id
                 });
                 
-            toast.success("Localidad eliminada correctamente");
-                setTimeout(() => {
+            toast.success("Solicitud exitosa");
                     dispatch({
                         type: UtilTypes.HIDE_MESSAGE
                     });
-                  }, 3000)
-              }, 10)
+               
               
             
         }).catch(error => {
@@ -243,7 +239,7 @@ function deleteLocation(id)
                 error: error.response.data
             })
             
-            toast.error("Hubo un error al eliminar localidad");
+            toast.error("Permiso denegado");
         });
     }
 }

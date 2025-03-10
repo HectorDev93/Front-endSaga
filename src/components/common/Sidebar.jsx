@@ -215,10 +215,69 @@ useEffect(() => {
                 />
                 <Else />
               </If> */}
+              {/* 
+              <li className="nav-item menu-open">
+            <a id="este" href="#" className="nav-link active">
+              <i className="nav-icon fas fa-city"></i>
+              <p>
+                Organización
+                <i className="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul className="nav nav-treeview">
+            <MenuLink
+                  to="/admin/categories"
+                  label="Categorias"
+                  icon="fas fa-clipboard-list"
+                />
+              <li className="nav-item">
+                <a href="#" className="nav-link">
+                  <i className="far fa-circle nav-icon"></i>
+                  <p>Inactive Page</p>
+                </a>
+              </li>
+            </ul>
+          </li> */}
+
               <li style={{ width: "20%", margin: "auto" }}>
                 <Spinner show={this.props.user.spinner} />
               </li>
-              {this.props.user.allUserMenu.map((um) => {
+              <MenuLink
+                  to="/admin/categories"
+                  label="Categorias"
+                  icon="fas fa-clipboard-list"
+                />
+                <MenuLink
+                  to="/admin/categoryTypes"
+                  label="Sub-categorias"
+                  icon="fas fa-list-ul"
+                />
+                <MenuLink
+                  to="/admin/societies"
+                  label="Sociedades"
+                  icon="fas fa-city"
+                />
+                <MenuLink
+                  to="/admin/collaborators"
+                  label="Colaboratores"
+                  icon="fas fa-hard-hat"
+                />
+                <MenuLink
+                  to="/admin/locations"
+                  label="Localidades"
+                  icon="fas fa-globe"
+                />
+                <MenuLink
+                  to="/admin/departments"
+                  label="Departmentos"
+                  icon="fas fa-building"
+                />
+                <MenuLink
+                  to="/admin/requests"
+                  label="Actividades"
+                  icon="fas fa-running"
+                />
+            {/*   {this.props.user.allUserMenu.map((um) => {
                 return (
                   <MenuLink
                     key={um.id}
@@ -227,7 +286,7 @@ useEffect(() => {
                     icon={um.icon}
                   />
                 );
-              })}
+              })} */}
             </ul>
           </nav>
           {/* <!-- /.sidebar-menu --> */}

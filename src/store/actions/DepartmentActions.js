@@ -95,16 +95,25 @@ function addDepartment(name, cb) {
           type: DepartmentTypes.CREATE_DEPARTMENTS_SUCCESS,
           data: response.data,
         });
-        toast.success("Departmento creado correctamente");
+        toast.success("Solicitud exitosa");
 
         cb();
       })
       .catch((error) => {
+        if(error.response.status === 303){
+          dispatch({
+          type: DepartmentTypes.CREATE_DEPARTMENTS_FAILURE,
+          error: error.response.data,
+        });
+          //toast.error("Esta categoria existe" + JSON.stringify(error.response.status));
+          toast.error("Este elemento ya existe en el sistema");
+        }else{
         dispatch({
           type: DepartmentTypes.CREATE_DEPARTMENTS_FAILURE,
           error: error.response.data,
         });
-        toast.error("Hubo un error al crear departamento");
+        toast.warning("Permiso denegado");
+      }
       });
   };
 }
@@ -154,19 +163,28 @@ function editDepartment(name, id, cb) {
             data: response.data,
           });
 
-          toast.success("Departmento actualizado correctamente");
+          toast.success("Resgistro actualizado correctamente");
           
           // eslint-disable-next-line no-unused-expressions
           cb();
       })
 
       .catch((error) => {
+        if(error.response.status === 303){
+          dispatch({
+          type: DepartmentTypes.EDIT_DEPARTMENTS_FAILURE,
+          error: error.response.data,
+        });
+          //toast.error("Esta categoria existe" + JSON.stringify(error.response.status));
+          toast.error("Este registro existe en el sistema");
+        }else{
         dispatch({
           type: DepartmentTypes.EDIT_DEPARTMENTS_FAILURE,
           error: error.response.data,
         });
 
-        toast.error("Hubo un errror al actualizar departamento");
+        toast.warning("Permiso denegado");
+      }
       });
   };
 }
@@ -184,24 +202,24 @@ function deleteDepartment(id) {
     // async call must dispatch action whether on success or failure
     Department.remove(id)
       .then((response) => {
-        setTimeout(() => {
+
           dispatch({
             type: DepartmentTypes.DELETE_DEPARTMENTS_SUCCESS,
             message: response.data.message,
             id: id,
           });
 
-          toast.success("Departmento eliminado correctamente");
-        
-        }, 10);
-      })
+          toast.success("Solitud exitosa");
+
+      
+        })
       .catch((error) => {
         dispatch({
           type: DepartmentTypes.DELETE_DEPARTMENTS_FAILURE,
           error: error.response.data,
         });
 
-        toast.error("Hubo un error eliminando el departamento");
+        toast.warning("Permiso denegado");
       });
   };
 }

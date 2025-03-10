@@ -180,7 +180,7 @@ class Collaborator extends React.Component {
   componentDidMount() {
     this.props.setCollaboratorDefaults();
     this.props.listCollaborators();
-    /* this.props.listAllSocieties();*/
+     this.props.listAllSocieties();
     this.props.listAllDepartments();
     this.props.listAllLocations(); 
   }

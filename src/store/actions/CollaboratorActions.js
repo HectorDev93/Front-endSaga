@@ -84,7 +84,7 @@ function addCollaborator(name, cb) {
           type: CollaboratorTypes.CREATE_COLLABORATORS_SUCCESS,
           data: response.data,
         });
-        toast.success("Colaborador registrado correctamente");
+        toast.success("Solicitud exitosa");
 
         cb();
       })
@@ -95,13 +95,13 @@ function addCollaborator(name, cb) {
           error: error.response.data,
         });
           //toast.error("Esta categoria existe" + JSON.stringify(error.response.status));
-          toast.error("Este lejago existe");
+          toast.error("Este registro existe en el sistema");
         }else{
         dispatch({
           type: CollaboratorTypes.CREATE_COLLABORATORS_FAILURE,
           error: error.response.data,
         });
-        toast.error("Hubo error al crear colaborador");
+        toast.warning("Permiso denegado");
       }
       });
   };
@@ -152,7 +152,7 @@ function editCollaborator(name, id, cb) {
             data: response.data,
           });
 
-          toast.success("Datos del colaborador actualizados correctamente");
+          toast.success("Registro actualizado correctamente");
           
           cb();
       })
@@ -164,14 +164,14 @@ function editCollaborator(name, id, cb) {
           error: error.response.data,
         });
           //toast.error("Esta categoria existe" + JSON.stringify(error.response.status));
-          toast.error("Este lejago existe");
+          toast.error("Este registro existe en el sistema");
         }else{
         dispatch({
           type: CollaboratorTypes.EDIT_COLLABORATORS_FAILURE,
           error: error.response.data,
         });
 
-        toast.error("Hubo un error al actualizar los datos del colaborador");
+        toast.warning("Permiso denegado");
       }
       });
   };
@@ -197,7 +197,7 @@ function deleteCollaborator(id) {
             id: id,
           });
 
-          toast.success("Colaborador eliminado correctamente");
+          toast.success("Solicitud exitosa");
         
         }, 10);
       })
@@ -207,7 +207,7 @@ function deleteCollaborator(id) {
           error: error.response.data,
         });
 
-        toast.error("Hubo un error al eliminar colaborador");
+        toast.warning("Permiso denegado");
       });
   };
 }
