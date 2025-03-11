@@ -13,7 +13,7 @@ import {
   setStatisticDefaults,
   handleStatisticChange,
 } from "../../../store/actions/StatisticActions";
-//un comentario
+//un comentario 2
 import { userByType } from "../../../store/actions/UserActions";
 import ChartDash from "../../common/ChartDash";
 //import Count from "../../common/Count";
