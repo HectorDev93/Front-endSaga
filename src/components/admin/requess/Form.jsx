@@ -58,9 +58,9 @@ componentDidUpdate(){
               placeholder="Numero de caso"
               onChange={this.props.handleRequesChange}
               value={this.props.reques.numCase ? this.props.reques.numCase : ""}
-              pattern="[A-Z0-9]{6,6}"
+              pattern="[A-Z0-9]{7,7}"
               title="Utilice solo letras mayusculas y numeros, minimo 6 caracteres"
-            maxLength="5"
+            maxLength="6"
             />
             <label htmlFor="numCase">Caso asistencia TI</label>
           </div>
@@ -189,7 +189,7 @@ componentDidUpdate(){
                 onChange={this.props.handleRequesChange}
                 value={this.props.reques.category}
               >
-                <option value="0">selecciona categoria</option>
+                <option value="0">selecciona incidente</option>
                 {this.props.all_categories.map((cat) => {
                   return (
                     <option key={cat.id} value={cat.id}>
@@ -198,7 +198,7 @@ componentDidUpdate(){
                   );
                 })}
               </select>
-              <label htmlFor="category">Categoria</label>
+              <label htmlFor="category">Incidente</label>
             </div>
             <button
             id="btn-generic2"
@@ -248,7 +248,7 @@ componentDidUpdate(){
                 onChange={this.props.handleRequesChange}
                 value={this.props.reques.categoryType}
               >
-                <option value="">selecciona subcategoria</option>
+                <option value="">selecciona tipo de incidente</option>
                 {this.props.all_categoryTypes.map((cat) => {
                   return (
                     <option key={cat.id} value={cat.id}>
@@ -257,7 +257,7 @@ componentDidUpdate(){
                   );
                 })}
               </select>
-              <label htmlFor="categoryType">Subcategoria</label>
+              <label htmlFor="categoryType">Tipo de incidente</label>
             </div>
             <button id="btn-generic2"
               disabled={this.props.enabled ? true : null}

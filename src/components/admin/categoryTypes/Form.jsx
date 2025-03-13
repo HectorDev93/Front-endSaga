@@ -88,7 +88,7 @@ class Form extends React.Component {
         </div> */}
         <div className="row mb-3">
           <label htmlFor="category" className="col-sm-2 col-form-label">
-            Categoria
+            Incidente
           </label>
           <div className="col-sm-6">
              <select
@@ -99,7 +99,7 @@ class Form extends React.Component {
               onChange={this.props.handleCategoryTypeChange}
               value={this.props.categoryType.category}
             >
-              <option value="">selecciona categoria</option>
+              <option value="">selecciona incidente</option>
               {this.props.all_categories.map((cat) => {
                 return (
                   <option key={cat.id} value={cat.id}>

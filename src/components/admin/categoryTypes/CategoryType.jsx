@@ -114,7 +114,7 @@ class CategoryType extends React.Component {
                   id="viewDepartment"
                   type="button"
                   className="btn btn-warning btn-sm"
-                  onClick={() => this.handleView(row, "Actualizar subcategoria")}
+                  onClick={() => this.handleView(row, "Actualizar incidente")}
                 >
                   <i className="fas fa-edit"></i>
                 </button>{" "}
@@ -324,7 +324,7 @@ class CategoryType extends React.Component {
 
     const renderAddTooltip = (props) => (
       <Tooltip id="button-tooltip" {...props}>
-        Add new category type
+        Agregar tipo de incidente
       </Tooltip>
     );
     const renderExportCsvTooltip = (props) => (
@@ -337,7 +337,7 @@ class CategoryType extends React.Component {
       <div className="content-wrapper">
         <HeaderContent
           index="Home"
-          property="Sub categorias"
+          property="Tipo incidente"
           iconProperty="fas fa-list-ul"
           show={this.props.categoryType.list_spinner}
         />
@@ -375,7 +375,7 @@ class CategoryType extends React.Component {
                                 type="button"
                                 className="btn btn-primary custom-info"
                                 onClick={() =>
-                                  this.handleCreate("Agregar nueva subcategoria")
+                                  this.handleCreate("Agregar nuevo incidente")
                                 }
                               >
                                 <i className="fa fa-plus"></i>

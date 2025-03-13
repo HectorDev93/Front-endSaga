@@ -9,7 +9,7 @@ class HeaderContent extends React.Component {
             <header className="content-header">
                     <div className="container-fluid">
                         <div className="row mb-2">
-                        <div className="col-sm-3">
+                        <div className="col-sm-4">
                             <h1 className="m-0"><i className={this.props.iconProperty}></i> {this.props.property}</h1>
                             
                         </div>  

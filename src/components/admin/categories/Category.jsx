@@ -309,7 +309,7 @@ loadPermission(){
 
     const renderAddTooltip = (props) => (
       <Tooltip id="button-tooltip" {...props}>
-        Agregar nueva categoria
+        Agregar nuevo incidente
       </Tooltip>
     );
    /*  const renderExportCsvTooltip = (props) => (
@@ -322,7 +322,7 @@ loadPermission(){
       <div className="content-wrapper">
         <HeaderContent
           index="Home"
-          property="Categorias"
+          property="Incidentes"
           iconProperty="fas fa-clipboard-list"
           show={this.props.category.list_spinner}
         />

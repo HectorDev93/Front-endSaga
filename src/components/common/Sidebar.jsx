@@ -244,12 +244,12 @@ useEffect(() => {
               </li>
               <MenuLink
                   to="/admin/categories"
-                  label="Categorias"
+                  label="Incidentes"
                   icon="fas fa-clipboard-list"
                 />
                 <MenuLink
                   to="/admin/categoryTypes"
-                  label="Sub-categorias"
+                  label="Tipo incidente"
                   icon="fas fa-list-ul"
                 />
                 <MenuLink

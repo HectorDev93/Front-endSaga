@@ -2,7 +2,7 @@ import React from "react";
 
 import { Bar, Pie } from "react-chartjs-2";
 import ChartDataLabels from "chartjs-plugin-datalabels";
-import { startTransition } from "react";
+//import { startTransition } from "react";
 
 const ChartDash = (props) => {
   var options = {

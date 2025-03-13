@@ -89,7 +89,7 @@ const getRoleUser = (userRole) => {
                 <If key={admin} condition={admin === true || moder === true}>
                   <MenuLink
                     to="/admin/categories"
-                    label="Categorias"
+                    label="Tipo de Incidente"
                     icon="fas fa-clipboard-list"
                   />
                   <MenuLink
@@ -104,7 +104,7 @@ const getRoleUser = (userRole) => {
                   />
                   <MenuLink
                     to="/admin/collaborators"
-                    label="Colaboratores"
+                    label="Colaboradores"
                     icon="fas fa-hard-hat"
                   />
                   <MenuLink

@@ -6,7 +6,7 @@ class BreadCrumb extends React.Component
     render()
     {
         return (
-            <div className="col-sm-8">
+            <div className="col-sm-7">
                 <nav aria-label="breadcrumb">
                     <ol className="breadcrumb  float-sm-right">
                         <li className="breadcrumb-item">

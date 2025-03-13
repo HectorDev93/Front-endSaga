@@ -15,7 +15,7 @@ import { listAllSocieties } from "../../../store/actions/SocietyActions";
 import { listAllDepartments } from "../../../store/actions/DepartmentActions";
 import { listAllLocations } from "../../../store/actions/LocationActions";
 import { listAllConditions } from "../../../store/actions/ConditionActions";
-import { listAllCategoryTypes } from "../../../store/actions/CategoryTypeActions";
+//import { listAllCategoryTypes } from "../../../store/actions/CategoryTypeActions";
 import { listAllCategories } from "../../../store/actions/CategoryActions";
 import { listAllCollaborators } from "../../../store/actions/CollaboratorActions";
 import { listAllPriorities } from "../../../store/actions/PriorityActions";

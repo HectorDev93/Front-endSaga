@@ -49,7 +49,7 @@ class AddModal extends React.Component {
     return (
       <Modal isOpen={this.props.isOpen} toggle={this.props.toggle} className="">
         <form method="post" onSubmit={this.handleSubmit}>
-          <ModalHeader>Agregar nueva categoria</ModalHeader>
+          <ModalHeader>Agregar nuevo incidente</ModalHeader>
           <ModalBody>
             <Form
               category={this.props.category.category}
