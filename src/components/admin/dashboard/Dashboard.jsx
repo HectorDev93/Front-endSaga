@@ -270,7 +270,7 @@ class Dashboard extends React.Component {
       { id: "1", name: "support" },
       { id: "2", name: "general" },
     ]; */
-    const years = [
+  /*   const years = [
       {
         id: "0",
         name: 2021,
@@ -291,6 +291,15 @@ class Dashboard extends React.Component {
         id:"4",
         name:2025
       }
+    ]; */
+    const years = [
+      { id:"0",name:"Todos"},
+      { id:"1",name:2021},
+      { id:"2",name:2022},
+      { id:"3",name:2023},
+      { id:"4",name:2024},
+      { id:"5",name:2025}
+
     ];
     const months = [
       {
