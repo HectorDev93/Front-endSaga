@@ -12,7 +12,8 @@ const Count = props => {
                 
                             <div className={props.styleBox ? "small-box "+props.styleBox : "small-box bg-info"}>
                                 <div className="inner">
-                                    <h3>{props.count}</h3>
+                                    {/* <h3>{props.count} {props.count2} ? || {props.count2} : " "</h3> */}
+                                    <h3>{props.count}  || {props.count2}</h3>
                                     <p>{props.label ? props.label+": " : ""}
                                     {props.countLabel}</p>
                                 </div>

@@ -47,7 +47,7 @@ class Society extends React.Component {
         },
         {
           dataField: "name",
-          text: "Nombre",
+          text: "Sociedad",
           sort: true,
           editable: true,
           filter: textFilter(),

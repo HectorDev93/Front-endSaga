@@ -3,6 +3,7 @@ import React from "react";
 import ErrorAlert from "../../common/ErrorAlert";
 import Spinner from "../../common/Spinner";
 import SuccessAlert from "../../common/SuccessAlert";
+import Tool from "../../../util";
 
 class Form extends React.Component {
   // eslint-disable-next-line no-useless-constructor
@@ -38,28 +39,7 @@ class Form extends React.Component {
         <Spinner show={this.props.create_update_spinner} />
         <SuccessAlert msg={this.props.success_message} />
         <ErrorAlert msg={this.props.error_message} />
-        <div className="row mb-3">
-          <label htmlFor="name" className="col-sm-2 col-form-label">
-            Nombre
-          </label>
-          <div className="col-sm-10">
-            <input
-              id="name"
-              required
-              type="text"
-              className="form-control"
-              placeholder="Nombre"
-              onChange={this.props.handleCategoryTypeChange}
-              value={
-                this.props.categoryType.name ? this.props.categoryType.name : ""
-              }
-              name="name"
-              pattern="[A-Za-z ]{3,25}"
-              title="Utilice solo letras y espacios, minimo 3 caracteres, maximo 25 caracteres"
-            maxLength="25"
-            />
-          </div>
-        </div>
+        
         {/* 
         <div className="col-md-6">
           <div
@@ -87,7 +67,7 @@ class Form extends React.Component {
           </div>
         </div> */}
         <div className="row mb-3">
-          <label htmlFor="category" className="col-sm-2 col-form-label">
+          <label htmlFor="category" className="col-sm-3 col-form-label">
             Incidente
           </label>
           <div className="col-sm-6">
@@ -120,7 +100,32 @@ class Form extends React.Component {
               <i className="fas fa-plus"></i>
             </button>
           </div>
-        </div> {/*
+        </div> 
+        <div className="row mb-3">
+          <label htmlFor="name" className="col-sm-3 col-form-label">
+            Descripción
+          </label>
+          <div className="col-sm-8">
+            <input
+              id="name"
+              required
+              type="text"
+              className="form-control"
+              placeholder="Descripción..."
+              onChange={this.props.handleCategoryTypeChange}
+              value={
+                this.props.categoryType.name ? this.props.categoryType.name : ""
+              }
+              name="name"
+             // pattern="[A-Za-z ]{3,25}"
+              pattern={Tool.validTxt4}
+              //pattern={"^[A-ZÁÉÍÓÚÑ][a-záéíóúñ]*(?:\s[a-záéíóúñ]+)*$"}
+              title="Utilice solo letras, minimo 3 caracteres, maximo 25 caracteres, espacio entre las palabras y la primera palabra debe iniciar con mayusculas"
+             maxLength="35"
+            />
+          </div>
+        </div>
+        {/*
         <div className="row mb-3">
           <label htmlFor="category" className="col-sm-2 col-form-label">
             Categoria

@@ -15,6 +15,19 @@ function handleRequesChange(field, value, checked) {
   };
 }
 
+function handleGetRequesChange(field, value, selected)
+{
+    return function (dispatch, getState) {
+
+        dispatch({
+            type: RequesTypes.HANDLE_GETREQUES_CHANGE,
+            data: value,
+            field,
+            selected
+        });
+    }
+}
+
 function setRequesDefaults() {
   return function (dispatch, getState) {
     dispatch({
@@ -22,6 +35,31 @@ function setRequesDefaults() {
     });
   };
 }
+
+ 
+function listGetReques(user, month, year){
+  //alert(id);
+  return function async(dispatch, getState){
+
+      dispatch({
+          type: RequesTypes.LIST_REQUESS
+        }); 
+    //async call
+    Reques.getReques(user, month, year).then((response) =>{
+      dispatch({
+        type: RequesTypes.LIST_REQUESS_SUCCESS,
+        data: response.data.data,
+      });
+    }).catch((error) => {
+      dispatch({
+        type: RequesTypes.LIST_REQUESS_FAILURE,
+        error: error.response.data,
+      });
+    });
+
+  }
+}
+
 
 /**
  * list Societies action
@@ -222,11 +260,13 @@ function resetFields() {
 export {
   listRequess,
   handleRequesChange,
+  handleGetRequesChange,
   addReques,
   showReques,
   editReques,
   deleteReques,
   setRequesDefaults,
+  listGetReques,
   listAllRequess,
   resetFields
 };

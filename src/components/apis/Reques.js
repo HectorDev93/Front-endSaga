@@ -5,6 +5,13 @@ const Reques = {
     list: (user) => {
         return axios.get(Tool.baseURL+'request/'+user);
     },
+    getReques:(user,month,year) =>{
+        if(year){
+            return axios.get(Tool.baseURL+'Grequest/'+ user +'/'+ month + '/' + year);
+            }else{
+            return axios.get(Tool.baseURL+'Grequest/'+ user +'/'+ month);
+            }
+    },
     add: (payload) => {
         return axios.post(Tool.baseURL+'request/create', payload, {headers: {Authorization: 'Bearer ' + localStorage.getItem("user.api_token"),Id: localStorage.getItem("user.id")}});
     },

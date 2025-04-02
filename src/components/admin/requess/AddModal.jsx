@@ -5,6 +5,7 @@ import {
   setRequesDefaults,
   handleRequesChange,
   listAllRequess,
+  listGetReques,
   listRequess,
   resetFields,
   editReques,
@@ -145,7 +146,12 @@ let rsp = this.props.all_collaborators.find(item => item.id === this.props.reque
     
               // reset defaults
               self.props.setRequesDefaults();
-              self.props.listRequess(localStorage.getItem("user.id"));
+             // self.props.listRequess(localStorage.getItem("user.id"));
+             self.props.listGetReques(
+              self.props.reques.selection.userNow,
+              self.props.reques.selection.monthNow,
+              self.props.reques.selection.yearNow
+            );
               self.props.listAllLocations();
               self.props.listAllCategories();
               self.props.listAllCategoryTypes();
@@ -167,7 +173,12 @@ let rsp = this.props.all_collaborators.find(item => item.id === this.props.reque
     
                 self.props.setRequesDefaults();
                 self.props.resetFields();
-                self.props.listRequess(localStorage.getItem("user.id"));
+               // self.props.listRequess(localStorage.getItem("user.id"));
+               self.props.listGetReques(
+                self.props.reques.selection.userNow,
+                self.props.reques.selection.monthNow,
+                self.props.reques.selection.yearNow
+              );
                 self.props.listAllLocations();
                 self.props.listAllCategories();
                 self.props.listAllCategoryTypes();
@@ -263,6 +274,7 @@ const mapStateToProps = (state, ownProps) => {
       editReques: (dsc, id, cb) => dispatch(editReques(dsc, id, cb)),
       setRequesDefaults: () => dispatch(setRequesDefaults()),
       listAllRequess: () => dispatch(listAllRequess()),
+      listGetReques:(user,month,year) => dispatch(listGetReques(user,month,year)),
       listAllLocations: () => dispatch(listAllLocations()),
       listAllCategories: () => dispatch(listAllCategories()),
       listAllPriorities: () => dispatch(listAllPriorities()),

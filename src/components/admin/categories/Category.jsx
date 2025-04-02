@@ -64,7 +64,7 @@ class Category extends React.Component {
         },
         {
           dataField: "name",
-          text: "Nombre",
+          text: "Descripción",
           sort: true,
           editable: true,
           filter: textFilter(),

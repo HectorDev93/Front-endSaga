@@ -5,6 +5,8 @@ const initialState = {
   // used in fill dropdowns
   obj: {
     allCollaboratorsMonth: "",
+    allActivity: "",
+    allActivityNull:"",
     societyMayor: "",
     allSocietyMonth: "",
     departmentMayor: "",

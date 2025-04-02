@@ -7,9 +7,11 @@ import {
   deleteReques,
   editReques,
   listRequess,
+  listGetReques,
   resetFields,
   setRequesDefaults,
   showReques,
+  handleGetRequesChange
 } from "../../../store/actions/RequesActions";
 import { listAllSocieties } from "../../../store/actions/SocietyActions";
 import { listAllDepartments } from "../../../store/actions/DepartmentActions";
@@ -19,6 +21,7 @@ import { listAllConditions } from "../../../store/actions/ConditionActions";
 import { listAllCategories } from "../../../store/actions/CategoryActions";
 import { listAllCollaborators } from "../../../store/actions/CollaboratorActions";
 import { listAllPriorities } from "../../../store/actions/PriorityActions";
+import { userByType } from "../../../store/actions/UserActions";
 
 //modal
 import AddModal from "./AddModal";
@@ -40,6 +43,9 @@ import Swal from "sweetalert2";
 import ToastrNotify from "../../common/TostrNotify";
 import { toast } from "react-toastify";
 
+//utilidades
+import { years,months } from "../../../Util2";
+
 //excel
 import ReactExport from "react-export-excel";
 
@@ -58,6 +64,11 @@ class Reques extends React.Component {
     this.state = {
       show_add_reques_modal: false,
       found: false,
+      monthNow: 0,
+      yearNow: 2021,
+      userNow: localStorage.getItem("user.id"),
+      userR: localStorage.getItem("user.role_id"),
+      support: "0",
       header: "",
       btnAction: "",
       actRow: [
@@ -197,6 +208,16 @@ class Reques extends React.Component {
           align: "center",
         },
         {
+          dataField: "c2Name",
+          text: "IT",
+          sort: true,
+          editable: false,
+          filter: textFilter(),
+          headerSortingStyle,
+          headerAlign: "center",
+          align: "center",
+        },
+        {
           dataField: "description",
           text: "Descripción",
           sort: true,
@@ -249,6 +270,7 @@ class Reques extends React.Component {
     this.handleUpdate = this.handleUpdate.bind(this);
     //this.handleEdit = this.handleEdit.bind(this);
 
+    this.handleGetRequesChange = this.handleGetRequesChange.bind(this);
     this.handleView = this.handleView.bind(this);
     this.handleCreate = this.handleCreate.bind(this);
     //this.handleExportToExcel = this.handleExportToExcel(this);
@@ -264,7 +286,13 @@ class Reques extends React.Component {
     //console.log(result)
 
     this.props.setRequesDefaults();
-    this.props.listRequess(localStorage.getItem("user.id"));
+   // this.props.listRequess(localStorage.getItem("user.id"));
+    this.props.listGetReques(
+      this.props.reques.selection.userNow,
+      this.props.reques.selection.monthNow,
+      this.props.reques.selection.yearNow
+    );
+
     /* this.props.listAllSocieties();
     this.props.listAllDepartments();
     this.props.listAllLocations();
@@ -273,6 +301,7 @@ class Reques extends React.Component {
     this.props.listAllCategories();
     this.props.listAllCategoryTypes();
     this.props.listAllPriorities(); */
+    this.props.userByType(1);
   }
 
   openAddModal = () => {
@@ -343,9 +372,16 @@ class Reques extends React.Component {
     }).then((result) => {
       if (result.isConfirmed) {
         this.props.deleteReques(row.id, function () {
-          setTimeout(() => {
+         /*  setTimeout(() => {
             this.props.listRequess(localStorage.getItem("user.id"));
-          }, 500);
+          }, 500); */
+          setTimeout(() => {
+            this.props.listGetReques(
+              this.props.reques.selection.userNow,
+              this.props.reques.selection.monthNow,
+              this.props.reques.selection.yearNow
+            );
+          }, 0.5);
         });
       }
     });
@@ -354,11 +390,32 @@ class Reques extends React.Component {
     console.log(row);
     let self = this;
     this.props.editReques(row, row.id, function () {
-      setTimeout(() => {
+    /*   setTimeout(() => {
         self.props.listRequess(localStorage.getItem("user.id"));
-      }, 500);
+      }, 0.5); */
+     /*  setTimeout(() => {
+        this.props.listGetReques(
+          this.props.reques.selection.userNow,
+          this.props.reques.selection.monthNow,
+          this.props.reques.selection.yearNow
+        );
+      }, 0.5); */
     });
   }
+
+  handleGetRequesChange(e) {
+    e.preventDefault();
+    this.props.handleGetRequesChange(e.target.name, e.target.value);
+    setTimeout(() => {
+      this.props.listGetReques(
+        this.props.reques.selection.userNow,
+        this.props.reques.selection.monthNow,
+        this.props.reques.selection.yearNow
+      );
+    }, 0.5);
+  }
+
+
 
   render() {
     const defaultSorted = [
@@ -474,6 +531,22 @@ activities = (rows[i].description);
         Export to CSV
       </Tooltip>
     ); */
+
+     const optionsMonth = months.map((month) => {
+      return (
+        <option className="select-custom" key={month.id} value={month.id}>
+          {month.name}
+        </option>
+      );
+    });
+    const optionsYear = years.map((year) => {
+      return (
+        <option className="select-custom" key={year.id} value={year.name}>
+          {year.name}
+        </option>
+      );
+    });
+
     return (
       <div className="content-wrapper">
         <HeaderContent
@@ -483,6 +556,72 @@ activities = (rows[i].description);
           show={this.props.reques.list_spinner}
         />
         <section className="content">
+          {/* Aqui va el filtro de soporte, año y mes */}
+           <div className="row">
+            <div className="col-md-6">
+              
+            </div>
+
+            {localStorage.getItem("user.role_id") === "3" ? (
+              <div className="col-md-2 ">
+                <label htmlFor="support">Seleciona IT</label>
+                <select
+                  id="support"
+                  className="form-control form-control-sm select-custom"
+                  name="userNow"
+                  // onChange={handleChangeSupport}
+                  onChange={this.handleGetRequesChange}
+                  value={
+                    this.props.reques.selection.userNow
+                      ? this.props.reques.selection.userNow
+                      : " "
+                  }
+                >
+                  <option key="0" value="0">
+                    Todos
+                  </option>
+                  {this.props.allUserType.map((ut) => {
+                    return (
+                      <option
+                        className="select-custom"
+                        key={ut.id}
+                        value={ut.id}
+                      >
+                        {ut.name}
+                      </option>
+                    );
+                  })}
+                </select>
+              </div>
+            ) : null}
+            <div className="col-md-2 ">
+              <label htmlFor="year">Año trabajado</label>
+              <select
+                id="year"
+                className="form-control form-control-sm select-custom"
+                name="yearNow"
+                // onChange={this.handleChangeYear}
+                onChange={this.handleGetRequesChange}
+                value={this.props.reques.selection.yearNow}
+              >
+                {optionsYear}
+              </select>
+            </div>
+            <div className="col-md-2 ">
+              <label htmlFor="month">Mes trabajado</label>
+              <select
+                id="month"
+                className="form-control form-control-sm"
+                name="monthNow"
+                // onChange={handleChangeMonth}
+                onChange={this.handleGetRequesChange}
+                value={this.props.reques.selection.monthNow}
+              >
+                {optionsMonth}
+              </select>
+            </div>
+          </div> 
+
           <div className="row">
             <div className="col-md-12">
               <div className="box">
@@ -683,12 +822,14 @@ const mapStateToProps = (state, ownProps) => {
     //all_categoryTypes: state.categoryType.all_categoryTypes,
     all_collaborators: state.collaborator.all_collaborators,
     all_priorities: state.priority.all_priorities, 
+    allUserType: state.user.allUserType,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     listRequess: (user) => dispatch(listRequess(user)),
+    listGetReques:(user,month,year) => dispatch(listGetReques(user,month,year)),
     setRequesDefaults: () => dispatch(setRequesDefaults()),
     deleteReques: (id) => dispatch(deleteReques(id)),
     showReques: (id) => dispatch(showReques(id)),
@@ -701,8 +842,10 @@ const mapDispatchToProps = (dispatch) => {
    // listAllCategoryTypes: () => dispatch(listAllCategoryTypes()),
     listAllCollaborators: () => dispatch(listAllCollaborators()),
     listAllPriorities: () => dispatch(listAllPriorities()),
-
+    handleGetRequesChange: (field, value, checked = null) =>
+      dispatch(handleGetRequesChange(field, value, checked)),
     resetFields: () => dispatch(resetFields()),
+    userByType: (type) => dispatch(userByType(type)),
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Reques);

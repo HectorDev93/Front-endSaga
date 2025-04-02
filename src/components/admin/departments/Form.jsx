@@ -61,6 +61,8 @@ class Form extends React.Component {
             
  <label for="society">Sociedad</label>
           </div>
+          {localStorage.getItem("user.role_id") === "3" ? (
+          
               <button
               id="btn-generic2"
                 type="button"
@@ -69,6 +71,7 @@ class Form extends React.Component {
               >
                 <i className="fas fa-plus"></i>
               </button>
+          ):null}
             </div>
             </div>
 

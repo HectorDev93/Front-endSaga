@@ -15,12 +15,17 @@ const initialState = {
     c1Name: "",
     c1Lname: "",
     c2Name: "",
-    c2Lname: "",
+   // c2Lname: "",
     collaboratorAttended: "",
     description:"",
     priority:"",
     support:"",
     created_at:""
+  },
+  selection : {
+    yearNow:new Date().getFullYear(),
+    userNow:localStorage.getItem("user.id"),
+    monthNow:0
   },
   success_message: "",
   error_message: "",
@@ -41,7 +46,8 @@ const requesReducer = function (state = initialState, action) {
       };
     case RequesTypes.HANDLE_REQUES_CHANGE:
       return handleChange(state, action);
-
+    case RequesTypes.HANDLE_GETREQUES_CHANGE:
+      return handleChangeSupport(state, action);
     case RequesTypes.LIST_REQUESS:
       return {
         ...state,
@@ -151,7 +157,7 @@ const requesReducer = function (state = initialState, action) {
             c1Name: "",
             c1Lname: "",
             c2Name: "",
-            c2Lname: "",
+           // c2Lname: "",
             description:"",
             priority:"",
             collaboratorAttended:"",
@@ -173,5 +179,17 @@ function handleChange(state, action) {
     reques: { ...state.reques, [action.field]: action.data },
   };
 }
+
+
+/**
+ * handle field change
+ */
+ function handleChangeSupport(state, action) {
+  return {
+    ...state,
+    selection: {...state.selection, [action.field]: action.data}
+};
+}
+
 
 export default requesReducer;

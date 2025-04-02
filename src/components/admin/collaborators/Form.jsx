@@ -2,6 +2,7 @@ import React from "react";
 import ErrorAlert from "../../common/ErrorAlert";
 import Spinner from "../../common/Spinner";
 import SuccessAlert from "../../common/SuccessAlert";
+import Tool from "../../../util";
 
 class Form extends React.Component {
   // eslint-disable-next-line no-useless-constructor
@@ -23,15 +24,17 @@ class Form extends React.Component {
             required
             type="text"
             className="form-control"
-            placeholder="Nombre"
+            placeholder="Nombre..."
             onChange={this.props.handleCollaboratorChange}
             value={
               this.props.collaborator.name ? this.props.collaborator.name : ""
             }
             name="name"
-            pattern="[A-Za-z ]{3,20}"
-            title="Utilice solo letras y espacios, minimo 3 caracteres, maximo 20 caracteres"
-          maxLength="20"
+            //pattern="[A-Za-z ]{3,35}"
+            pattern={Tool.validTxt6}
+           // title="Utilice solo letras y espacios, minimo 3 caracter, maximo 35 caracteres. Ej: Héctor A. o Héctor Arnaldo"
+            title={Tool.txtValidPront}
+            maxLength="35"
           />
           <label for="name" className="form-label">
             Nombre
@@ -45,7 +48,7 @@ class Form extends React.Component {
             required
             type="text"
             className="form-control"
-            placeholder="Apellido"
+            placeholder="Apellido..."
             onChange={this.props.handleCollaboratorChange}
             value={
               this.props.collaborator.last_name
@@ -53,9 +56,11 @@ class Form extends React.Component {
                 : ""
             }
             name="last_name"
-            pattern="[A-Za-z ]{3,20}"
-            title="Utilice solo letras y espacios, minimo 3 caracteres, maximo 20 caracteres"
-          maxLength="20"
+            //pattern="[A-Za-z ]{3,35}"
+            pattern={Tool.validTxt6}
+            //title="Utilice solo letras y espacios, minimo 3 caracteres, maximo 20 caracteres"
+            title={Tool.txtValidPront}
+            maxLength="35"
           />
           <label for="lastName" className="form-label">
             Apellido
@@ -77,9 +82,10 @@ class Form extends React.Component {
                   : ""
               }
               name="legajo"
-              pattern="[0-9]{5,5}"
-              title="Utilice solo numeros, maximo 5 caracteres"
-            maxLength="5"
+              //pattern="[0-9]{5,5}"
+              pattern={Tool.validNum1}
+              title="Utilice solo numeros, maximo 8 "
+            maxLength="8"
             />
           <label for="legajo" class="form-label">
             Legajo
@@ -115,7 +121,7 @@ class Form extends React.Component {
             Sociedad
           </label>
           </div>
-
+          {localStorage.getItem("user.role_id") === "3" ? (
             <button
             id="btn-generic2"
                 type="button"
@@ -124,6 +130,7 @@ class Form extends React.Component {
               >
                 <i className="fas fa-plus"></i>
               </button>
+          ):null}
           </div>
         </div>
         
@@ -151,6 +158,7 @@ class Form extends React.Component {
            
             <label for="department" className="form-label">Departamento</label>
             </div>
+          
               <button
               id="btn-generic2"
               disabled={this.props.enabled ? true : null}
@@ -160,7 +168,6 @@ class Form extends React.Component {
               >
                 <i className="fas fa-plus"></i>
               </button>
-          
 </div>
          
 
@@ -187,6 +194,8 @@ class Form extends React.Component {
             </select>
             <label for="location">Localidad</label>
               </div>
+              {localStorage.getItem("user.role_id") === "3" ? (
+          
               <button
               id="btn-generic2"
                 type="button"
@@ -195,6 +204,7 @@ class Form extends React.Component {
               >
                 <i className="fas fa-plus"></i>
               </button>
+              ):null}
           </div>
         </div>
         

@@ -504,13 +504,22 @@ class Dashboard extends React.Component {
           </div>
 
           <div className="row">
+            <div style={{ fontSize: '23px' }}> Con caso TI/ Sin caso  TI</div>
             <Box
               styleBox="bg-info"
-              count={
+              /* count={
                 this.props.statistic.obj.allCollaboratorsMonth
                   ? this.props.statistic.obj.allCollaboratorsMonth
                   : "0"
-              }
+              } */
+              count={
+                this.props.statistic.obj.allActivity
+                  ? this.props.statistic.obj.allActivity
+                  : "0"
+                }
+              count2={this.props.statistic.obj.allActivityNull
+                ? this.props.statistic.obj.allActivityNull
+                : "0"}
               countLabel="Empleados asistidos"
               iconModel="fas fa-users"
               to="/admin/users"

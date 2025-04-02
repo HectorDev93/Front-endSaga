@@ -59,8 +59,8 @@ componentDidUpdate(){
               onChange={this.props.handleRequesChange}
               value={this.props.reques.numCase ? this.props.reques.numCase : ""}
               pattern="[A-Z0-9]{7,7}"
-              title="Utilice solo letras mayusculas y numeros, minimo 6 caracteres"
-            maxLength="6"
+              title="Utilice solo letras mayusculas y numeros, minimo 7 caracteres"
+            maxLength="7"
             />
             <label htmlFor="numCase">Caso asistencia TI</label>
           </div>

@@ -215,15 +215,20 @@ useEffect(() => {
                 />
                 <Else />
               </If> */}
-              {/* 
-              <li className="nav-item menu-open">
-            <a id="este" href="#" className="nav-link active">
+               
+              {/* <li className="nav-item menu-open">
+             <a id="este" href="#" className="nav-link active">
               <i className="nav-icon fas fa-city"></i>
               <p>
                 Organización
                 <i className="right fas fa-angle-left"></i>
               </p>
-            </a>
+            </a> 
+            <MenuLink
+                  to="/admin/categories"
+                  label="Categorias"
+                  icon="fas fa-clipboard-list"
+                />
             <ul className="nav nav-treeview">
             <MenuLink
                   to="/admin/categories"
@@ -237,7 +242,7 @@ useEffect(() => {
                 </a>
               </li>
             </ul>
-          </li> */}
+          </li>  */}
 
               <li style={{ width: "20%", margin: "auto" }}>
                 <Spinner show={this.props.user.spinner} />
