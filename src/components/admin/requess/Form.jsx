@@ -88,6 +88,8 @@ componentDidUpdate(){
               </select>
               <label htmlFor="location">Localidad</label>
             </div>
+
+            {localStorage.getItem("user.role_id") === "3" ? (
             <button
             id="btn-generic2"
               type="button"
@@ -96,6 +98,7 @@ componentDidUpdate(){
             >
               <i className="fas fa-plus"></i>
             </button>
+            ):null}
           </div>
         </div>
         {/* collaborator */}

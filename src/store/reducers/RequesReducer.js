@@ -27,6 +27,9 @@ const initialState = {
     userNow:localStorage.getItem("user.id"),
     monthNow:0
   },
+  search:{
+     searchTerm: ""
+  },
   success_message: "",
   error_message: "",
   validation_errors: null,
@@ -48,6 +51,8 @@ const requesReducer = function (state = initialState, action) {
       return handleChange(state, action);
     case RequesTypes.HANDLE_GETREQUES_CHANGE:
       return handleChangeSupport(state, action);
+    case RequesTypes.HANDLE_GET_DINAMIC:
+      return handleChangeSearch(state, action);
     case RequesTypes.LIST_REQUESS:
       return {
         ...state,
@@ -188,6 +193,16 @@ function handleChange(state, action) {
   return {
     ...state,
     selection: {...state.selection, [action.field]: action.data}
+};
+}
+
+/**
+ * handle search field change
+ */
+ function handleChangeSearch(state, action) {
+  return {
+    ...state,
+    search: {...state.search, [action.field]: action.data}
 };
 }
 

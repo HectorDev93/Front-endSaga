@@ -8,10 +8,12 @@ import {
   editReques,
   listRequess,
   listGetReques,
+  dinamicRequest,
   resetFields,
   setRequesDefaults,
   showReques,
-  handleGetRequesChange
+  handleGetRequesChange,
+  handleDinamicChange
 } from "../../../store/actions/RequesActions";
 import { listAllSocieties } from "../../../store/actions/SocietyActions";
 import { listAllDepartments } from "../../../store/actions/DepartmentActions";
@@ -45,6 +47,8 @@ import { toast } from "react-toastify";
 
 //utilidades
 import { years,months } from "../../../Util2";
+
+import { Link, useRouteMatch } from "react-router-dom";
 
 //excel
 import ReactExport from "react-export-excel";
@@ -94,6 +98,28 @@ class Reques extends React.Component {
           text: "ID",
           sort: true,
           editable: false,
+           formatter: (cellContent, row) => {
+            return (
+              <div>
+                {/* <button
+                  id="viewCollaborator"
+                  type="button"
+                  className="btn btn-warning btn-sm"
+                  onClick={() => this.handleView(row, "Editar actividad")}
+                >
+                  <i className="fas fa-edit"></i>
+                  
+                </button> 
+                */}
+                <a className="nav-link" href="#" onClick={() => this.handleView(row, "Editar actividad")}>
+                {/*  <i className={"nav-icon " + icon}></i>*/}
+               <p>{row.id}</p> 
+                
+                </a>
+
+              </div>
+            );
+          }, 
           headerSortingStyle,
           headerAlign: "center",
           align: "center",
@@ -102,7 +128,7 @@ class Reques extends React.Component {
           dataField: "numCase",
           text: "Caso TI",
           sort: true,
-          filter: textFilter(),
+          //filter: textFilter(),
           headerSortingStyle,
           headerAlign: "center",
           align: "center",
@@ -112,7 +138,7 @@ class Reques extends React.Component {
           text: "Sociedad",
           sort: true,
           editable: false,
-          filter: textFilter(),
+         // filter: textFilter(),
           headerSortingStyle,
           headerAlign: "center",
           align: "center",
@@ -122,7 +148,7 @@ class Reques extends React.Component {
           text: "Departamento",
           sort: true,
           editable: false,
-          filter: textFilter(),
+          //filter: textFilter(),
           headerSortingStyle,
           headerAlign: "center",
           align: "center",
@@ -132,7 +158,7 @@ class Reques extends React.Component {
           text: "Localidad",
           sort: true,
           editable: false,
-          filter: textFilter(),
+          //filter: textFilter(),
           headerSortingStyle,
           headerAlign: "center",
           align: "center",
@@ -142,7 +168,7 @@ class Reques extends React.Component {
           text: "Condición",
           sort: true,
           editable: false,
-          filter: textFilter(),
+          //filter: textFilter(),
           headerSortingStyle,
           headerAlign: "center",
           align: "center",
@@ -152,7 +178,7 @@ class Reques extends React.Component {
           text: "Categoria",
           sort: true,
           editable: false,
-          filter: textFilter(),
+          //filter: textFilter(),
           headerSortingStyle,
           headerAlign: "center",
           align: "center",
@@ -162,7 +188,7 @@ class Reques extends React.Component {
           text: "Subcategoria",
           sort: true,
           editable: false,
-          filter: textFilter(),
+          //filter: textFilter(),
           headerSortingStyle,
           headerAlign: "center",
           align: "center",
@@ -172,7 +198,7 @@ class Reques extends React.Component {
           text: "Creado:",
           sort: true,
           editable: false,
-          filter: textFilter(),
+          //filter: textFilter(),
           headerSortingStyle,
           headerAlign: "center",
           align: "center",
@@ -192,7 +218,7 @@ class Reques extends React.Component {
           text: "Collaborator",
           sort: true,
           editable: false,
-          filter: textFilter(),
+          //filter: textFilter(),
           headerSortingStyle,
           headerAlign: "center",
           align: "center",
@@ -202,7 +228,7 @@ class Reques extends React.Component {
           text: "C. Apellido",
           sort: true,
           editable: false,
-          filter: textFilter(),
+          //filter: textFilter(),
           headerSortingStyle,
           headerAlign: "center",
           align: "center",
@@ -212,7 +238,7 @@ class Reques extends React.Component {
           text: "IT",
           sort: true,
           editable: false,
-          filter: textFilter(),
+          //filter: textFilter(),
           headerSortingStyle,
           headerAlign: "center",
           align: "center",
@@ -222,7 +248,7 @@ class Reques extends React.Component {
           text: "Descripción",
           sort: true,
           editable: false,
-          filter: textFilter(),
+          //filter: textFilter(),
           headerSortingStyle,
           headerAlign: "center",
           align: "center",
@@ -232,7 +258,7 @@ class Reques extends React.Component {
           text: "Prioridad",
           sort: true,
           editable: false,
-          filter: textFilter(),
+          //filter: textFilter(),
           headerSortingStyle,
           headerAlign: "center",
           align: "center",
@@ -271,6 +297,8 @@ class Reques extends React.Component {
     //this.handleEdit = this.handleEdit.bind(this);
 
     this.handleGetRequesChange = this.handleGetRequesChange.bind(this);
+    //busqueda dinamica
+    this.handleDinamicChange = this.handleDinamicChange.bind(this);
     this.handleView = this.handleView.bind(this);
     this.handleCreate = this.handleCreate.bind(this);
     //this.handleExportToExcel = this.handleExportToExcel(this);
@@ -415,7 +443,18 @@ class Reques extends React.Component {
     }, 0.5);
   }
 
-
+  handleDinamicChange(e){
+    e.preventDefault();
+    this.props.handleDinamicChange(e.target.name, e.target.value);
+    if(e.target.value){
+      setTimeout(()=>{
+      this.props.dinamicRequest(
+        this.props.reques.selection.userNow ,
+        this.props.reques.search.searchTerm);
+      },0.5);
+    }
+    
+  }
 
   render() {
     const defaultSorted = [
@@ -558,8 +597,27 @@ activities = (rows[i].description);
         <section className="content">
           {/* Aqui va el filtro de soporte, año y mes */}
            <div className="row">
-            <div className="col-md-6">
+            <div className="col-md-3">
               
+            </div>
+            <div className="col-md-3">
+
+            <label htmlFor="search">Buscar...</label>
+            <input
+              id="search"
+              required
+              type="text"
+              className="form-control"
+              placeholder="Buscar..."
+              onChange={this.handleDinamicChange}
+               value={
+                this.props.reques.search.searchTerm ? this.props.reques.search.searchTerm : ""
+              }
+              name="searchTerm"
+              //pattern="[A-Za-z ]{3,30}"
+             // title="Utilice solo letras y espacios, minimo 3 caracteres, maximo 30 caracteres"
+           // maxLength="30"
+            />
             </div>
 
             {localStorage.getItem("user.role_id") === "3" ? (
@@ -830,6 +888,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     listRequess: (user) => dispatch(listRequess(user)),
     listGetReques:(user,month,year) => dispatch(listGetReques(user,month,year)),
+    dinamicRequest:(user, searchTerm) => dispatch(dinamicRequest(user, searchTerm)),
     setRequesDefaults: () => dispatch(setRequesDefaults()),
     deleteReques: (id) => dispatch(deleteReques(id)),
     showReques: (id) => dispatch(showReques(id)),
@@ -844,6 +903,7 @@ const mapDispatchToProps = (dispatch) => {
     listAllPriorities: () => dispatch(listAllPriorities()),
     handleGetRequesChange: (field, value, checked = null) =>
       dispatch(handleGetRequesChange(field, value, checked)),
+    handleDinamicChange: (field, value) => dispatch(handleDinamicChange(field, value)),
     resetFields: () => dispatch(resetFields()),
     userByType: (type) => dispatch(userByType(type)),
   };

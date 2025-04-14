@@ -102,6 +102,7 @@ class Society extends React.Component {
           headerAlign: "center",
           align: "center",
         }, */
+
         {
           dataField: "id2",
           text: "Acciones",
@@ -115,16 +116,19 @@ class Society extends React.Component {
                   >
                     <i className="fas fa-eye"></i>
                   </button> */}{" "}
+{localStorage.getItem("user.role_id") === "3" ? (
                 <button
                   className="btn btn-danger btn-sm"
                   onClick={() => this.handleDelete(row)}
                 >
                   <i className="fas fa-trash-alt"></i>
                 </button>
+):null}
               </div>
             );
           },
         },
+
       ],
     };
 
@@ -268,11 +272,14 @@ class Society extends React.Component {
                       >
                         {(props) => (
                           <div>
+                            
+          {localStorage.getItem("user.role_id") === "3" ? (
                             <OverlayTrigger
                               placement="top"
                               delay={{ show: 200, hide: 200 }}
                               overlay={renderAddTooltip}
                             >
+                              
                               <button
                                 id="addLocation"
                                 type="button"
@@ -282,6 +289,7 @@ class Society extends React.Component {
                                 <i className="fa fa-plus"></i>
                               </button>
                             </OverlayTrigger>
+          ):null}
                             ,
                             <MyExportCSV {...props.csvProps} />{" "}
                             <ToggleList

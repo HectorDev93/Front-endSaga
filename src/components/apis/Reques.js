@@ -12,6 +12,12 @@ const Reques = {
             return axios.get(Tool.baseURL+'Grequest/'+ user +'/'+ month);
             }
     },
+   /*  getDinamicRequest: (payload, user) => {
+        return axios.get(Tool.baseURL+'dimanicRequest/' + user, payload);
+    }, */
+    getDinamicRequest: (user, search) => {
+        return axios.get(Tool.baseURL+'dimanicRequest/' + user +'/'+search);
+    },
     add: (payload) => {
         return axios.post(Tool.baseURL+'request/create', payload, {headers: {Authorization: 'Bearer ' + localStorage.getItem("user.api_token"),Id: localStorage.getItem("user.id")}});
     },

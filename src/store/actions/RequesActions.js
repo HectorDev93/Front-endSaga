@@ -28,6 +28,18 @@ function handleGetRequesChange(field, value, selected)
     }
 }
 
+function handleDinamicChange(field, value)
+{
+    return function (dispatch, getState) {
+
+        dispatch({
+            type: RequesTypes.HANDLE_GET_DINAMIC,
+            data: value,
+            field
+        });
+    }
+}
+
 function setRequesDefaults() {
   return function (dispatch, getState) {
     dispatch({
@@ -60,6 +72,29 @@ function listGetReques(user, month, year){
   }
 }
 
+function dinamicRequest(user, search) {
+
+  return function async(dispatch, getState){
+
+    dispatch({
+        type: RequesTypes.LIST_REQUESS
+      }); 
+  //async call
+  Reques.getDinamicRequest(user, search).then((response) =>{
+    dispatch({
+      type: RequesTypes.LIST_REQUESS_SUCCESS,
+      data: response.data.data,
+    });
+  }).catch((error) => {
+    dispatch({
+      type: RequesTypes.LIST_REQUESS_FAILURE,
+      error: error.response.data,
+    });
+  });
+
+}
+
+}
 
 /**
  * list Societies action
@@ -261,6 +296,8 @@ export {
   listRequess,
   handleRequesChange,
   handleGetRequesChange,
+  handleDinamicChange,
+  dinamicRequest,
   addReques,
   showReques,
   editReques,

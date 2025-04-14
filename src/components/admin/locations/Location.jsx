@@ -111,12 +111,14 @@ class Location extends React.Component {
                 >
                   <i className="fas fa-eye"></i>
                 </button> */}{" "}
+{localStorage.getItem("user.role_id") === "3" ? (
                 <button
                   className="btn btn-danger btn-sm"
                   onClick={() => this.handleDelete(row)}
                 >
                   <i className="fas fa-trash-alt"></i>
                 </button>
+):null}
               </div>
             );
           },
@@ -338,6 +340,8 @@ class Location extends React.Component {
                       >
                         {(props) => (
                           <div>
+                            
+          {localStorage.getItem("user.role_id") === "3" ? (
                             <OverlayTrigger
                               placement="top"
                               delay={{ show: 200, hide: 200 }}
@@ -352,6 +356,7 @@ class Location extends React.Component {
                                 <i className="fa fa-plus"></i>
                               </button>
                             </OverlayTrigger>
+          ):null}
                             ,
                             <MyExportCSV {...props.csvProps} />{" "}
                             <ToggleList
