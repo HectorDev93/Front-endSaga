@@ -34,7 +34,7 @@ import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import "react-bootstrap-table-next/dist/react-bootstrap-table2.min.css";
 import "react-bootstrap-table2-toolkit/dist/react-bootstrap-table2-toolkit.min.css";
 import BootstrapTable from "react-bootstrap-table-next";
-import filterFactory, { textFilter } from "react-bootstrap-table2-filter";
+//import filterFactory, { textFilter } from "react-bootstrap-table2-filter";
 import paginationFactory from "react-bootstrap-table2-paginator";
 import ToolkitProvider, { ColumnToggle } from "react-bootstrap-table2-toolkit";
 //import cellEditFactory from "react-bootstrap-table2-editor";
@@ -48,7 +48,7 @@ import { toast } from "react-toastify";
 //utilidades
 import { years,months } from "../../../Util2";
 
-import { Link, useRouteMatch } from "react-router-dom";
+//import { Link, useRouteMatch } from "react-router-dom";
 
 //excel
 import ReactExport from "react-export-excel";
@@ -111,12 +111,12 @@ class Reques extends React.Component {
                   
                 </button> 
                 */}
-                <a className="nav-link" href="#" onClick={() => this.handleView(row, "Editar actividad")}>
-                {/*  <i className={"nav-icon " + icon}></i>*/}
+              {/* <a className="nav-link" href="#" onClick={() => this.handleView(row, "Editar actividad")}>
                <p>{row.id}</p> 
-                
-                </a>
-
+                </a> */}
+          <button id="prueba" className="btn-table" type="button" onClick={() => this.handleView(row, "Editar actividad")}>
+          {row.id}
+          </button>
               </div>
             );
           }, 
@@ -808,7 +808,7 @@ activities = (rows[i].description);
                               selectRow={selectRow}
                               bordered={false}
                               defaultSorted={defaultSorted}
-                              filter={filterFactory()}
+                              //filter={filterFactory()}
                               filterPosition="top"
                               pagination={paginationFactory()}
                              /*  cellEdit={cellEditFactory({

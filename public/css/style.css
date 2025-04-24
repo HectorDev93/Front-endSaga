@@ -16,7 +16,9 @@
   --black-transparent:  rgba(0, 0, 0, .35);
   --white: #fff;
   --blue: #1f2d3d;
-  --custom-warning: #ffc107;;
+  --blue-soft: #17a2b8;
+  --blue-heavy: rgb(1, 18, 255);
+  --custom-warning: #ffc107;
   --very-light-yellow: rgba(122, 114, 81, 0.7);
   --custom-purple:rgb(112, 24, 78);
   --cyan: rgb(0, 99, 71);
@@ -70,11 +72,22 @@ z-index: 3;
   transition: background-color, border-color .3s;
 }
 
-.custom-info:hover {
-  background-color: #0d6efd !important;
-  border-color: #0d6efd !important;
+.custom-info:hover{
+  background-color: var(--blue-heavy) !important;
+  border-color: var(--blue-heavy) !important;
 }
 
+.btn-table{
+  color: var(--secondary);
+    font-weight: 800;
+    border-color: var(--secondary);
+    border-radius: 9px 5px;
+}
+.btn-table:hover{
+  /* background-color: rgba(165, 233, 250, 0.082) !important;*/
+  background-color: var(--very-light-white);
+  transition: background-color .3s;
+}
 
 #btn-generic{
   background-color: var(--primary);
