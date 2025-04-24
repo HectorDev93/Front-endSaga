@@ -83,6 +83,9 @@ z-index: 3;
     border-color: var(--secondary);
     border-radius: 9px 5px;
 }
+.prueba{
+color: #005029;
+}
 .btn-table:hover{
   /* background-color: rgba(165, 233, 250, 0.082) !important;*/
   background-color: var(--very-light-white);
